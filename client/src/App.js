@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
@@ -17,6 +17,10 @@ function App() {
         >
           Learn React
         </a>
+        <button>Save</button>
+        <button className="button-secondary">Save</button>
+        <button className="button-delete">Save</button>
+        <button>Save</button>
       </header>
     </div>
   );

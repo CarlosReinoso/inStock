@@ -1,0 +1,64 @@
+@use './variables' as *;
+
+button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  background: $Indigo;
+  color: $White;
+  padding: 0 15px;
+  border-radius: 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+}
+
+button:hover {
+  background-color: $Graphite;
+}
+
+.button-secondary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+
+  height: 36px;
+  color: $White;
+  border-radius: 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  background: $White;
+  border: 1px solid $Cloud;
+  color: $Slate;
+}
+
+.button-secondary:hover {
+  color: $Indigo;
+  border: 1px solid $Indigo;
+}
+
+.button-delete {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  height: 36px;
+  background: $Red;
+  color: $White;
+  border-radius: 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  border: none;
+}
+
+.button-delete:hover {
+  background-color: $Graphite;
+}
