@@ -1,3 +1,9 @@
+@use './partials/buttons' as *;
+@use './partials/fonts' as *;
+@use './partials/resets' as *;
+@use './partials/typeface' as *;
+@use './partials/variables' as *;
+
 .App {
   text-align: center;
 }
