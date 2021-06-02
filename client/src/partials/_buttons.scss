@@ -1,18 +1,19 @@
 @use './variables' as *;
+@use './resets' as *;
 
 button {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 36px;
+  height: remy(36);
   background: $Indigo;
   color: $White;
-  padding: 0 15px;
-  border-radius: 20px;
+  padding: 0 remy(15);
+  border-radius: remy(20);
   font-style: normal;
   font-weight: 600;
-  font-size: 13px;
+  font-size: remy(13);
   border: none;
 }
 
@@ -25,22 +26,22 @@ button:hover {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0 15px;
+  padding: 0 remy(15);
 
-  height: 36px;
+  height: remy(36);
   color: $White;
-  border-radius: 20px;
+  border-radius: remy(20);
   font-style: normal;
   font-weight: 600;
-  font-size: 13px;
+  font-size: remy(13);
   background: $White;
-  border: 1px solid $Cloud;
+  border: remy(1p) solid $Cloud;
   color: $Slate;
 }
 
 .button-secondary:hover {
   color: $Indigo;
-  border: 1px solid $Indigo;
+  border: remy(1p) solid $Indigo;
 }
 
 .button-delete {
@@ -48,14 +49,14 @@ button:hover {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 0 15px;
-  height: 36px;
+  padding: 0 remy(15);
+  height: remy(36);
   background: $Red;
   color: $White;
-  border-radius: 20px;
+  border-radius: remy(20);
   font-style: normal;
   font-weight: 600;
-  font-size: 13px;
+  font-size: remy(13);
   border: none;
 }
 
