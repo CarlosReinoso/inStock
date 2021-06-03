@@ -1,11 +1,13 @@
 import logo from "./logo.svg";
 import "./App.scss";
-import Header from "./components/header/header";
+import Header from "./components/Header/Header";
 import { Route } from "react-router-dom";
 import InventoryList from "./components/InventoryList/InventoryList";
+
 function App() {
   return (
     <div className="App">
+      <Header />
       <Route path="/:location" component={Header} />
       <Route path="/inventory" component={InventoryList} />
       <button>Save</button>

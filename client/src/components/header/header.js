@@ -47,4 +47,4 @@ class header extends Component {
 
 header.propTypes = {};
 
-export default header;
+export default Header;
