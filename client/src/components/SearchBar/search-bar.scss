@@ -8,9 +8,17 @@
   display: flex;
   flex-direction: column;
 
+  @include tablet {
+    padding: remy(32) remy(32) remy(24) remy(32);
+
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
   &__title {
-    align-self: flex-start;
     margin-bottom: remy(24);
+    margin-left: 0;
+    margin-right: auto;
   }
 
   &__input {
@@ -19,8 +27,13 @@
     border: remy(1) solid $Cloud;
     padding: 0 remy(24);
     margin-bottom: remy(16);
+    outline: none;
   }
   &__button {
     letter-spacing: unset;
+    @include tablet {
+      padding: remy(8) remy(16);
+      margin-left: remy(16);
+    }
   }
 }

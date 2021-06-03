@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import inStockLogo from "../../assets/Icons/InStock-Logo.svg";
 import { Link } from "react-router-dom";
 
-class header extends Component {
+class Header extends Component {
   render() {
     const { location } = this.props.match.params;
     console.log(this.props.match);
@@ -45,6 +45,6 @@ class header extends Component {
   }
 }
 
-header.propTypes = {};
+Header.propTypes = {};
 
 export default Header;

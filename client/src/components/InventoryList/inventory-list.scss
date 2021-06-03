@@ -9,4 +9,48 @@
   position: relative;
   bottom: remy(60);
   background-color: $White;
+  @include tablet {
+    margin: 0 remy(32);
+  }
+  @include desktop {
+    margin: 0 remy(130);
+  }
+
+  &__label-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+    margin-bottom: remy(24);
+    & img {
+      height: remy(24);
+    }
+    @include tablet {
+      width: 50%;
+      flex-grow: 1;
+    }
+  }
+
+  &__columns {
+    display: none;
+    @include tablet {
+      margin: 0 remy(32);
+      display: flex;
+      justify-content: space-between;
+    }
+    &-label {
+      @include tablet {
+        display: flex !important;
+      }
+    }
+  }
+}
+
+.--end {
+  margin-left: auto;
+  margin-right: 0;
+  width: auto;
+}
+
+.--marginright {
+  margin-right: remy(16);
 }

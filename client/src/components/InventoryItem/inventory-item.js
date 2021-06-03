@@ -17,45 +17,41 @@ const InventoryItem = ({ item }) => {
 
   return (
     <div className="inventory-item">
-      <section className="inventory-item__left">
-        <label className="inventory-item__label">
-          INVENTORY ITEM
-          <div className="inventory-item__chevron-container">
-            <Link to={`/${item.itemName}`}>
-              <p className="inventory-item__item-name">{item.itemName}</p>
-            </Link>
-            <img className="inventory-item__chevron" src={chevronRight} />
-          </div>
-        </label>
+      <div className="inventory-item__label --order-one">
+        <label>INVENTORY ITEM </label>
+        <div className="inventory-item__chevron-container ">
+          <Link className="inventory-item__link" to={`/${item.itemName}`}>
+            <p className="inventory-item__item-name">{item.itemName}</p>
+          </Link>
+          <img className="inventory-item__chevron" src={chevronRight} />
+        </div>
+      </div>
+      <div className="inventory-item__label --order-three">
+        <label>CATEGORY</label>
+        <p className="inventory-item__item-category">{item.category}</p>
+      </div>
 
-        <label className="inventory-item__label">
-          CATEGORY
-          <p className="inventory-item__item-category">{item.category}</p>
-        </label>
-      </section>
-      <section className="inventory-item__right">
-        <label>
-          STATUS
-          <p
-            className={`inventory-item__item-status inventory-item__item-status--${
-              item.status.toLowerCase() === "in stock"
-                ? "available"
-                : "unavailable"
-            }`}
-          >
-            {item.status.toUpperCase()}
-          </p>
-        </label>
+      <div className="inventory-item__label --order-two">
+        <label>STATUS</label>
+        <p
+          className={`inventory-item__item-status inventory-item__item-status--${
+            item.status.toLowerCase() === "in stock"
+              ? "available"
+              : "unavailable"
+          }`}
+        >
+          {item.status.toUpperCase()}
+        </p>
+      </div>
+      <div className="inventory-item__label --order-four">
+        <label>QTY </label>
+        <p className="inventory-item__item-qty">{item.quantity}</p>
+      </div>
+      <div className="inventory-item__label --order-five">
+        <label>WAREHOUSE </label>
+        <p className="inventory-item__item-warehouse">{item.warehouseName}</p>
+      </div>
 
-        <label>
-          QTY
-          <p className="inventory-item__item-qty">{item.quantity}</p>
-        </label>
-        <label>
-          WAREHOUSE
-          <p className="inventory-item__item-warehouse">{item.warehouseName}</p>
-        </label>
-      </section>
       <section className="inventory-item__actions">
         <img
           onMouseEnter={onHover}
@@ -63,7 +59,10 @@ const InventoryItem = ({ item }) => {
           className="inventory-item__icon"
           src={binIcon}
         />
-        <Link to={`/edit/${item.id}`}>
+        <Link
+          className="inventory-item__link --marginleft"
+          to={`/edit/${item.id}`}
+        >
           <img src={editIcon} className="inventory-item__icon" />
         </Link>
       </section>

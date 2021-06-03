@@ -7,7 +7,6 @@ import InventoryList from "./components/InventoryList/InventoryList";
 function App() {
   return (
     <div className="App">
-      <Header />
       <Route path="/:location" component={Header} />
       <Route path="/inventory" component={InventoryList} />
       <button>Save</button>
