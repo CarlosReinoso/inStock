@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Route path="/:location" component={Header} />
-      <Route path="/inventory" exact component={InventoryList} />
+      <Route path="/inventory" component={InventoryList} />
       <button>Save</button>
       <button className="button-secondary">Save</button>
       <button className="button-delete">Save</button>
