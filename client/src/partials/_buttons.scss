@@ -19,6 +19,22 @@ button {
 
 }
 
+.button-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: remy(36);
+
+  color: $White;
+  padding: 0 remy(15);
+  border-radius: remy(20);
+  font-style: normal;
+  font-weight: 600;
+  font-size: remy(13);
+  border: none;
+}
+
 button:hover {
   background-color: $Graphite;
 }

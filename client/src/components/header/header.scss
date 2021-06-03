@@ -1,0 +1,73 @@
+@use '../../partials/resets' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/buttons' as *;
+@use '../../partials/breakpoints' as *;
+
+.header {
+  padding: remy(24) remy(16) 0 remy(16);
+  height: remy(200);
+  background-color: $Graphite;
+  justify-content: center;
+  @include tablet {
+    padding: remy(32) remy(32) remy(200-92) remy(32);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @include desktop {
+    padding: remy(32) remy(130) remy(200-92) remy(130);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__nav {
+    @include tablet {
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__logo {
+    width: remy(115);
+  }
+
+  &__list {
+    margin-top: remy(24);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    @include tablet {
+      margin-top: 0;
+      height: remy(92);
+    }
+  }
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    &--margin {
+      margin-right: remy(8);
+    }
+  }
+  &__list-button {
+    text-align: center;
+    @extend .button-header;
+    color: $White;
+    width: remy(164);
+    height: remy(36);
+    @include tablet {
+      width: remy(90);
+      height: remy(38);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &--active {
+      @extend .button-header;
+      background-color: $Black;
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
