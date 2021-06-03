@@ -1,28 +1,16 @@
-import logo from './logo.svg';
 import './App.scss';
+import { Link, Route } from 'react-router-dom';
+import WarehouseList from './components/warehouseList/WarehouseList';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <button>Save</button>
-        <button className="button-secondary">Save</button>
-        <button className="button-delete">Save</button>
-        <button>Save</button>
-        <p>This is remy test</p>
-      </header>
+
+      {/* just so i can navigate, can delete */}
+      <Link to="/warehouses">warehouse</Link>
+      <Route path="/warehouses">
+        <WarehouseList />
+      </Route>
     </div>
   );
 }
