@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 class header extends Component {
   render() {
     const { location } = this.props.match.params;
-    console.log(location);
+    console.log(this.props.match);
     return (
       <header className="header">
         <img

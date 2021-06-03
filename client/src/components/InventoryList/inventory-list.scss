@@ -1,0 +1,12 @@
+@use '../../partials/resets' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/buttons' as *;
+@use '../../partials/breakpoints' as *;
+
+.inventory-list {
+  border-radius: remy(5);
+  margin: 0 remy(16) 0 remy(16);
+  position: relative;
+  bottom: remy(60);
+  background-color: $White;
+}

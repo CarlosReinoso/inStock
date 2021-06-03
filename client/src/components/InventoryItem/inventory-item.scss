@@ -1,0 +1,64 @@
+@use '../../partials/resets' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/buttons' as *;
+@use '../../partials/breakpoints' as *;
+
+.inventory-item {
+  padding: remy(16) remy(24);
+
+  display: flex;
+
+  flex-wrap: wrap;
+  border-top: remy(1) solid $Cloud;
+
+  &__actions {
+    margin-top: remy(16);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__chevron {
+    width: remy(24);
+  }
+
+  &__chevron-container {
+    display: flex;
+    margin-bottom: remy(16);
+  }
+  &__left {
+    margin-right: remy(73);
+  }
+
+  &__item {
+    &-name {
+      color: $Indigo;
+    }
+    &-category {
+      color: $Black;
+    }
+    &-qty {
+      color: $Black;
+      margin-bottom: remy(16);
+    }
+    &-warehouse {
+      color: $Black;
+    }
+    &-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: remy(4) remy(8);
+      border-radius: remy(20);
+      margin-bottom: remy(16);
+
+      &--available {
+        background-color: rgba($color: $Green, $alpha: 0.07);
+        color: $Green;
+      }
+      &--unavailable {
+        background-color: rgba($color: $Red, $alpha: 0.07);
+        color: $Red;
+      }
+    }
+  }
+}
