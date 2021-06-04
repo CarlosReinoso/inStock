@@ -1,0 +1,202 @@
+@use '../../partials/resets' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/breakpoints' as *;
+@use '../../partials/fonts' as *;
+
+.warehouse-list {
+  &__table-header {
+    display: none;
+    @include tablet {
+      display: flex;
+      height: remy(40);
+      background-color: rgba(247, 248, 249, 0.7);
+      justify-content: space-around;
+      padding: remy(0) remy(32) remy(0) remy(32);
+      color: $Slate;
+    }
+    @include desktop {
+      padding: remy(0) remy(40) remy(0) remy(40);
+    }
+  }
+  &__table-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  &__table-item {
+    display: flex;
+    width: 17%;
+    font-size: remy(12);
+    align-items: center;
+    font-weight: 600;
+    &--info {
+      display: flex;
+      align-items: center;
+      font-size: remy(12);
+      width: 22%;
+      font-weight: 600;
+    }
+    &--action {
+      font-weight: 600;
+      justify-content: flex-end;
+      font-size: remy(12);
+    }
+  }
+  &__table-icon {
+    margin-left: remy(8.94);
+    width: remy(18);
+  }
+  &__card {
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+    border-radius: 3px;
+  }
+  &__search-container {
+    display: inline-flex;
+    justify-content: space-between;
+    border: 1px solid $Cloud;
+    border-radius: remy(20);
+    padding: remy(8) remy(16);
+    background-color: $White;
+    width: 100%;
+    @include tablet {
+    }
+  }
+  &__search-icon {
+    width: 18px;
+  }
+  &__card-header-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: remy(16);
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      gap: remy(16);
+      width: 55%;
+    }
+  }
+  &__card-header {
+    display: flex;
+    flex-direction: column;
+    gap: remy(16);
+    margin-bottom: remy(24);
+    padding: remy(32) remy(24) remy(0) remy(24);
+    @include tablet {
+      justify-content: space-between;
+      flex-direction: row;
+      padding: remy(32) remy(32) remy(0) remy(32);
+    }
+    @include desktop {
+      padding: remy(40) remy(40) remy(0) remy(40);
+    }
+  }
+  &__button {
+    width: 100%;
+  }
+
+  &__label {
+    margin-top: remy(16);
+    margin-bottom: remy(4);
+    @include tablet {
+      display: none;
+    }
+  }
+  &__card-input {
+    border: none;
+  }
+  &__hr {
+    padding: remy(0) remy(-100);
+    border: none;
+    background-color: $Cloud;
+    height: 1px;
+  }
+
+  &__item {
+    padding: remy(0) remy(24) remy(27) remy(24);
+    @include tablet {
+      padding: remy(16) remy(32) remy(16) remy(32);
+    }
+    @include desktop {
+      padding: remy(16) remy(40) remy(16) remy(40);
+    }
+  }
+  &__item-top {
+    display: flex;
+    justify-content: space-between;
+    gap: remy(16);
+    @include tablet {
+      gap: 0;
+    }
+  }
+  &__item-left {
+    width: 50%;
+    @include tablet {
+      display: flex;
+      align-items: center;
+    }
+    &--name {
+      width: 54%;
+      font-size: remy(14);
+    }
+    &--address {
+      @include tablet {
+        width: 55%;
+        padding-right: 20%;
+      }
+      @include desktop {
+        padding-right: 0;
+      }
+    }
+  }
+  &__chevron {
+    min-height: remy(10);
+    min-width: remy(6.17);
+  }
+  &__item-right {
+    width: 50%;
+    @include tablet {
+      display: flex;
+      width: 51%;
+      align-items: center;
+    }
+    @include desktop {
+      width: 53%;
+    }
+    &--name {
+      width: 58%;
+      @include desktop {
+        width: 54%;
+      }
+    }
+    &--email {
+      width: 60%;
+    }
+  }
+  &__item-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: remy(19);
+    @include tablet {
+      display: none;
+    }
+    &--bin {
+      width: 50%;
+    }
+    &--pen {
+      display: flex;
+      justify-content: flex-end;
+      width: 50%;
+      margin-bottom: 7px;
+    }
+    &--tablet {
+      display: none;
+      @include tablet {
+        display: flex;
+        align-items: center;
+        gap: remy(24);
+      }
+    }
+  }
+}
