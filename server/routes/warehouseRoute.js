@@ -16,7 +16,7 @@ warehouseRoute.post("/", (req, res) => {
   if (!warehouseList) {
     res.status(503).json({ message: "something is wrong with the server" });
   } else if (!name || !address || !city || !country || !contact) {
-    res.status(501).json({
+    res.status(400).json({
       message: "incorrect request, information missing",
       body: req.body,
     });
