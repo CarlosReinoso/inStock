@@ -9,7 +9,6 @@ warehouseRoute.get("/", (req, res) => {
 
 warehouseRoute.post("/", (req, res) => {
   const { name, address, city, country, contact } = req.body;
-  console.log(req.body);
 
   const newWarehouse = { id: uuidv4(), name, address, city, country, contact };
   const warehouseList = JSON.parse(fs.readFileSync("./data/warehouses.json"));
