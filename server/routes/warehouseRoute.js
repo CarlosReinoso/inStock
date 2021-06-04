@@ -3,7 +3,7 @@ const warehouseRoute = express.Router();
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
-warehouseRoute.get("/", (req, res) => {
+warehouseRoute.get("/", (_req, res) => {
   res.send("warehouse endpoint");
 });
 
