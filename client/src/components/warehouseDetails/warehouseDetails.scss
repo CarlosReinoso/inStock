@@ -4,31 +4,58 @@
 @use '../../partials/fonts' as *;
 
 .warehouse {
-    &__card-header {
-        display: flex;
-        flex-direction: column;
-        gap: remy(16);
-        margin-bottom: remy(24);
-        padding: remy(32) remy(24) remy(0) remy(24);
-        @include tablet {
-          justify-content: space-between;
-          flex-direction: row;
-          padding: remy(32) remy(32) remy(0) remy(32);
-        }
-        @include desktop {
-          padding: remy(40) remy(40) remy(0) remy(40);
-        }
-        &--back-icon {
-            width: remy(20);
-        }
-        &--pen-icon {
-            width: remy(20);
-            background-color: $White;
-            color: $White;
-            fill: $White;
-        }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &__card {
+    align-self: center;
+    z-index: 1;
+    width: 90%;
+    margin-top: remy(-68);
+    margin-bottom: remy(96);
+    background-color: $White;
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+    border-radius: 3px;
+  }
+  &__card-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: remy(8);
+    margin-bottom: remy(24);
+    padding: remy(32) remy(24) remy(0) remy(24);
+    @include tablet {
+      justify-content: space-between;
+      flex-direction: row;
+      padding: remy(32) remy(32) remy(0) remy(32);
+    }
+    @include desktop {
+      padding: remy(40) remy(40) remy(0) remy(40);
+    }
+    &--back-icon {
+      width: remy(32);
+      height: remy(24);
+    }
+    &--pen-icon {
+      padding: 0.4875rem;
+      height: remy(36);
+      width: remy(36);
+      background-color: $Indigo;
+      border-radius: 50%;
+      margin-left: auto;
+      @include tablet {
+        display: none;
       }
-
+    }
+    &--button {
+      display: none;
+      @include tablet {
+        display: block;
+        width: remy(20);
+        background-color: $Indigo;
+      }
+    }
+  }
 
   &__table-header {
     display: none;
@@ -73,10 +100,7 @@
     margin-left: remy(8.94);
     width: remy(18);
   }
-  &__card {
-    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
-    border-radius: 3px;
-  }
+
   &__search-container {
     display: inline-flex;
     justify-content: space-between;
@@ -103,7 +127,7 @@
       width: 55%;
     }
   }
- 
+
   &__button {
     width: 100%;
   }
@@ -148,9 +172,11 @@
       display: flex;
       align-items: center;
     }
-    &--name {
-      width: 54%;
-      font-size: remy(14);
+    &--category {
+      width: 58%;
+      @include desktop {
+        width: 54%;
+      }
     }
     &--address {
       @include tablet {
@@ -163,8 +189,8 @@
     }
   }
   &__chevron {
-    min-height: remy(10);
-    min-width: remy(6.17);
+    max-height: remy(18);
+    max-width: remy(18);
   }
   &__item-right {
     width: 50%;
@@ -176,14 +202,30 @@
     @include desktop {
       width: 53%;
     }
-    &--name {
-      width: 58%;
-      @include desktop {
-        width: 54%;
-      }
-    }
-    &--email {
+
+    &--status-in {
+      display: flex;
+      justify-content: center;
       width: 60%;
+      font-weight: 600;
+      font-size: remy(11);
+      background-color: rgba(21, 132, 99, 0.07);
+      border-radius: remy(20);
+      color: $Green;
+    }
+    &--status-out {
+      display: flex;
+      justify-content: center;
+      width: 60%;
+      font-weight: 600;
+      font-size: remy(11);
+      background-color: rgba(201, 69, 21, 0.07);
+      border-radius: remy(20);
+      color: $Red;
+    }
+
+    &--details {
+      align-self: flex-end;
     }
   }
   &__item-bottom {

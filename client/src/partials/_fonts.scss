@@ -33,6 +33,7 @@ h3 {
 h4 {
     font-size: remy(11);
     line-height: remy(16);
+    color: $Slate;
     @include tablet {
         font-size: remy(11);
         line-height: remy(18);
@@ -74,5 +75,18 @@ p {
         line-height: remy(18);
     }
 }
+
+.text-link {
+    /* M H3 */
+    display: flex;
+    align-items: center;
+    font-family: Titillium Web, san-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 20px;
+    color: $Indigo;
+    gap: remy(11.16);
+  }
 
 
