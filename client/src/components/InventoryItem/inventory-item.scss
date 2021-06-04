@@ -1,0 +1,172 @@
+@use '../../partials/resets' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/buttons' as *;
+@use '../../partials/breakpoints' as *;
+
+label {
+  @include tablet {
+    display: none;
+  }
+}
+
+.inventory-item {
+  padding: remy(24) remy(16) remy(24) remy(16);
+  display: flex;
+
+  flex-wrap: wrap;
+  border-top: remy(1) solid $Cloud;
+  @include tablet {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: remy(24) remy(32) remy(24) remy(32);
+  }
+
+  &__link {
+    display: flex;
+  }
+
+  &__icon {
+    width: remy(24);
+  }
+
+  &__label {
+    @include tablet {
+      display: flex;
+      align-content: center;
+      width: 7.5rem;
+    }
+  }
+
+  @include tablet {
+  }
+  &__actions {
+    margin-top: remy(16);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    order: 6;
+    @include tablet {
+      width: auto;
+      justify-content: flex-start;
+      align-content: center;
+      margin-top: 0;
+    }
+  }
+  &__chevron {
+    width: remy(24);
+  }
+
+  &__link {
+    @include tablet {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+  }
+  &__chevron-container {
+    display: flex;
+    margin-bottom: remy(16);
+    @include tablet {
+      margin: 0;
+    }
+  }
+
+  &__item {
+    flex-grow: 1;
+    order: 1;
+    &-name {
+      color: $Indigo;
+    }
+    &-category {
+      color: $Black;
+      order: 3;
+
+      @include tablet {
+        display: flex;
+        align-items: center;
+      }
+    }
+    &-qty {
+      color: $Black;
+      margin-bottom: remy(16);
+      @include tablet {
+        margin: 0;
+      }
+    }
+    &-warehouse {
+      color: $Black;
+      justify-self: flex-end;
+      @include tablet {
+        display: flex;
+        align-items: center;
+      }
+    }
+    &-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: remy(4) remy(8);
+      border-radius: remy(20);
+      margin-bottom: remy(16);
+      min-width: remy(61);
+      max-width: remy(120);
+      width: 80%;
+
+      @include tablet {
+        margin: 0;
+      }
+      &--available {
+        background-color: rgba($color: $Green, $alpha: 0.07);
+        color: $Green;
+      }
+      &--unavailable {
+        background-color: rgba($color: $Red, $alpha: 0.07);
+        color: $Red;
+      }
+    }
+  }
+}
+
+.--end {
+  justify-self: flex-end;
+  @include tablet {
+    width: 6rem;
+  }
+}
+
+.--order-one {
+  order: 1;
+  width: 50%;
+}
+.--order-two {
+  order: 2;
+  width: 50%;
+  @include tablet {
+    order: 3;
+  }
+}
+.--order-three {
+  order: 3;
+  width: 50%;
+  @include tablet {
+    order: 2;
+  }
+}
+.--order-four {
+  order: 4;
+  width: 50%;
+}
+.--order-five {
+  order: 5;
+  width: 50%;
+  margin-left: auto;
+  margin-right: 0;
+}
+.--order-six {
+  order: 6;
+}
+
+.--marginleft {
+  margin-left: remy(16);
+}

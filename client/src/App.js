@@ -1,8 +1,11 @@
 
 import WarehouseList from './components/warehouseList/WarehouseList';
 import "./App.scss";
-import Header from "./components/header/header";
+
+import Header from "./components/Header/Header";
+import InventoryList from "./components/InventoryList/InventoryList";
 import { Route, Link } from "react-router-dom";
+
 function App() {
   return (
     <div className="App">
@@ -12,7 +15,7 @@ function App() {
         <WarehouseList />
       </Route>
       <Route path="/:location" component={Header} />
-
+      <Route path="/inventory" component={InventoryList} />
       <button>Save</button>
       <button className="button-secondary">Save</button>
       <button className="button-delete">Save</button>

@@ -4,13 +4,17 @@
 @use '../../partials/breakpoints' as *;
 
 .header {
+  display: flex;
+  flex-direction: column;
   padding: remy(24) remy(16) 0 remy(16);
   height: remy(200);
   background-color: $Graphite;
-  justify-content: center;
+
+  align-items: center;
   @include tablet {
     padding: remy(32) remy(32) remy(200-92) remy(32);
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
   }
 
@@ -28,6 +32,7 @@
   }
   &__logo {
     width: remy(115);
+    align-self: center;
   }
 
   &__list {
