@@ -16,51 +16,49 @@ const WarehouseDetails = () => {
   const inventoriesDataMarkup = inventoriesData.map((inv) => {
     return (
       <>
-        <div className="warehouse__card-body">
-          <hr className="warehouse__hr" />
-          <div key={inv.id} className="warehouse__item">
-            <div className="warehouse__item-top">
-              <div className="warehouse__item-left">
-                <h4 className="warehouse__label">INVENTORY ITEM</h4>
-                <Link className="p2 warehouse__item-left--name text-link ">
-                  {inv.itemName}
-                  <img
-                    className="warehouse__chevron"
-                    src={chevronRight}
-                    alt=""
-                  />
-                </Link>
-                <h4 className="warehouse__label">CATEGORY</h4>
-                <p className="p2 warehouse__item-left--category">
-                  {inv.category}
-                </p>
-              </div>
-              <div className="warehouse__item-right">
-                <h4 className="warehouse__label">STATUS</h4>
-                <p className={ inv.quantity > 0 ? "warehouse__item-right--status-in" : "warehouse__item-right--status-out" }>
-                  {inv.status}
-                </p>
-                <h4 className="warehouse__label">QTY</h4>
-                <p className="p2 warehouse__item-right--email">
-                  {inv.quantity} 
-                </p>
-              </div>
-              <div className="warehouse__item-bottom--tablet">
-                <div className="warehouse__item-bottom--bin">
-                  <img src={binIcon} alt="" />
-                </div>
-                <div className="warehouse__item-bottom--pen">
-                  <img src={penIcon} alt="" />
-                </div>
-              </div>
+        <hr className="warehouse__hr" />
+        <div key={inv.id} className="warehouse__item">
+          <div className="warehouse__item-top">
+            <div className="warehouse__item-left">
+              <h4 className="warehouse__label">INVENTORY ITEM</h4>
+              <Link className="p2 warehouse__item-left--name text-link ">
+                {inv.itemName}
+                <img className="warehouse__chevron" src={chevronRight} alt="" />
+              </Link>
+              <h4 className="warehouse__label">CATEGORY</h4>
+              <p className="p2 warehouse__item-left--category">
+                {inv.category}
+              </p>
             </div>
-            <div className="warehouse__item-bottom">
+            <div className="warehouse__item-right">
+              <h4 className="warehouse__label">STATUS</h4>
+              <p
+                className={
+                  inv.quantity > 0
+                    ? "warehouse__item-right--status-in"
+                    : "warehouse__item-right--status-out"
+                }
+              >
+                {inv.status}
+              </p>
+              <h4 className="warehouse__label">QTY</h4>
+                <p className="p2 warehouse__item-right--qty">{inv.quantity}</p>
+            </div>
+            <div className="warehouse__item-bottom--tablet">
               <div className="warehouse__item-bottom--bin">
                 <img src={binIcon} alt="" />
               </div>
               <div className="warehouse__item-bottom--pen">
                 <img src={penIconBlue} alt="" />
               </div>
+            </div>
+          </div>
+          <div className="warehouse__item-bottom">
+            <div className="warehouse__item-bottom--bin">
+              <img src={binIcon} alt="" />
+            </div>
+            <div className="warehouse__item-bottom--pen">
+              <img src={penIconBlue} alt="" />
             </div>
           </div>
         </div>
@@ -87,57 +85,63 @@ const WarehouseDetails = () => {
             <img
               src={penIcon}
               alt=""
-              className="warehouse__card-header--pen-icon"
+              className="warehouse__card-header--pen-icon-tablet"
             />
             Edit
           </button>
         </div>
         <hr className="warehouse__hr" />
-        <div className="warehouse__warehouse-details">
-          <div className="warehouse__item">
-            <div className="warehouse__item-top">
-              <div className="warehouse__item-left">
-                <h4 className="warehouse__label">WAREHOUSE ADDRESS:</h4>
-                <p className="p2 warehouse__item-left--address">
-                  {`${warehousesData[0].address} ${warehousesData[0].city}, ${warehousesData[0].country}`}
-                </p>
-                <h4 className="warehouse__label">CONTACT NAME</h4>
-                <p className="p2 warehouse__item-left--category">
+        <div className="warehouse-head">
+          <div className="warehouse-head__item">
+            <div className="warehouse-head__item-top">
+              <h4 className="warehouse-head__label">WAREHOUSE ADDRESS:</h4>
+              <p className="p2 warehouse-head__item-top--address">
+                {warehousesData[0].address} <br /> {warehousesData[0].city},{" "}
+                {warehousesData[0].country}
+              </p>
+            </div>
+            <div className="warehouse-head__vr"></div>
+            <div className="warehouse-head__item-bottom">
+              <div className="warehouse-head__item-bottom--left">
+                <h4 className="warehouse-head__label">CONTACT NAME:</h4>
+                <p className="p2 warehouse-head__item-bottom--category">
                   {warehousesData[0].contact.name} <br />
                   {warehousesData[0].contact.position}
                 </p>
               </div>
-              <div className="warehouse__item-right--details">
-                <h4 className="warehouse__label">CONTACT INFORMATION</h4>
-                <p className="p2 warehouse__item-right--email">
+              <div className="warehouse-head__item-bottom--right">
+                <h4 className="warehouse-head__label">CONTACT INFORMATION:</h4>
+                <p className="p2 warehouse-head__item-bottom">
                   {warehousesData[0].contact.phone} <br />
                   {warehousesData[0].contact.email}
                 </p>
               </div>
-             
             </div>
-            
           </div>
         </div>
         <div className="warehouse__table-header">
           <ul className="warehouse__table-list">
-            <li className="warehouse__table-item">
-              WAREHOUSE
-              <img className="warehouse__table-icon" src={sortIcon} alt="" />
-            </li>
-            <li className="warehouse__table-item">
-              ADDRESS
-              <img className="warehouse__table-icon" src={sortIcon} alt="" />
-            </li>
-            <li className="warehouse__table-item">
-              CONTACT NAME
-              <img className="warehouse__table-icon" src={sortIcon} alt="" />
-            </li>
-            <li className="warehouse__table-item--info">
-              CONTACT INFORMATION
-              <img className="warehouse__table-icon" src={sortIcon} alt="" />
-            </li>
-            <li className="warehouse__table-item--action">ACTIONS</li>
+            <div className="warehouse__table-list--left">
+              <li className="warehouse__table-item">
+                INVENTORY ITEM
+                <img className="warehouse__table-icon" src={sortIcon} alt="" />
+              </li>
+              <li className="warehouse__table-item">
+                CATEGORY
+                <img className="warehouse__table-icon" src={sortIcon} alt="" />
+              </li>
+              <li className="warehouse__table-item">
+                STATUS
+                <img className="warehouse__table-icon" src={sortIcon} alt="" />
+              </li>
+            </div>
+            <div className="warehouse__table-list--right">
+              <li className="warehouse__table-item--info">
+                QUANTITY
+                <img className="warehouse__table-icon" src={sortIcon} alt="" />
+              </li>
+              <li className="warehouse__table-item--action">ACTIONS</li>
+            </div>
           </ul>
         </div>
         {inventoriesDataMarkup}

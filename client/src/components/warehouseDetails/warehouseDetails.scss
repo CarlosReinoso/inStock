@@ -16,6 +16,9 @@
     background-color: $White;
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
     border-radius: 3px;
+    @include desktop {
+      width: 80%;
+    }
   }
   &__card-header {
     display: flex;
@@ -25,8 +28,8 @@
     margin-bottom: remy(24);
     padding: remy(32) remy(24) remy(0) remy(24);
     @include tablet {
-      justify-content: space-between;
       flex-direction: row;
+      justify-content: flex-start;
       padding: remy(32) remy(32) remy(0) remy(32);
     }
     @include desktop {
@@ -50,8 +53,10 @@
     &--button {
       display: none;
       @include tablet {
-        display: block;
-        width: remy(20);
+        display: flex;
+        gap: remy(4);
+        margin-left: auto;
+        width: remy(81);
         background-color: $Indigo;
       }
     }
@@ -61,11 +66,14 @@
     display: none;
     @include tablet {
       display: flex;
-      height: remy(40);
-      background-color: rgba(247, 248, 249, 0.7);
       justify-content: space-around;
+      height: remy(40);
+      background-color: rgba(247, 248, 249, 1);
       padding: remy(0) remy(32) remy(0) remy(32);
       color: $Slate;
+      z-index: 3;
+      margin-bottom: remy(-2);
+      position: relative;
     }
     @include desktop {
       padding: remy(0) remy(40) remy(0) remy(40);
@@ -73,13 +81,34 @@
   }
   &__table-list {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
+    &--left {
+      @include tablet {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10%;
+        width: 80%;
+      }
+      @include desktop {
+        width: 80%;
+        gap: 20%;
+      }
+    }
+    &--right {
+      @include tablet {
+        display: flex;
+        justify-content: flex-end;
+        gap: 36%;
+        width: 40%;
+      }
+      @include desktop {
+        width: 32%;
+      }
+    }
   }
   &__table-item {
     display: flex;
-    width: 17%;
     font-size: remy(12);
     align-items: center;
     font-weight: 600;
@@ -147,6 +176,7 @@
     border: none;
     background-color: $Cloud;
     height: 1px;
+    z-index: 2;
   }
 
   &__item {
@@ -163,6 +193,7 @@
     justify-content: space-between;
     gap: remy(16);
     @include tablet {
+      justify-content: flex-start;
       gap: 0;
     }
   }
@@ -171,11 +202,16 @@
     @include tablet {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      width: 55%;
+      @include desktop {
+        width: 61%;
+      }
     }
     &--category {
-      width: 58%;
+      width: 44%;
       @include desktop {
-        width: 54%;
+        width: 46%;
       }
     }
     &--address {
@@ -196,13 +232,21 @@
     width: 50%;
     @include tablet {
       display: flex;
-      width: 51%;
+      justify-content: space-between;
+      gap: 15%;
+      width: 55%;
       align-items: center;
     }
     @include desktop {
       width: 53%;
     }
-
+    &--qty {
+      @include tablet {
+        display: flex;
+        justify-content: flex-start;
+        width: 30%;
+      }
+    }
     &--status-in {
       display: flex;
       justify-content: center;
@@ -212,6 +256,9 @@
       background-color: rgba(21, 132, 99, 0.07);
       border-radius: remy(20);
       color: $Green;
+      @include tablet {
+        width: 24%;
+      }
     }
     &--status-out {
       display: flex;
@@ -222,6 +269,9 @@
       background-color: rgba(201, 69, 21, 0.07);
       border-radius: remy(20);
       color: $Red;
+      @include tablet {
+        width: 30%;
+      }
     }
 
     &--details {
@@ -251,6 +301,62 @@
         align-items: center;
         gap: remy(24);
       }
+    }
+  }
+}
+
+.warehouse-head {
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: remy(16);
+    @include tablet {
+      flex-direction: row;
+      gap: 0;
+    }
+    padding: remy(0) remy(24) remy(27) remy(24);
+    @include tablet {
+      padding: remy(16) remy(32) remy(16) remy(32);
+    }
+    @include desktop {
+      padding: remy(16) remy(40) remy(16) remy(40);
+    }
+  }
+  &__label {
+    margin-top: remy(16);
+    margin-bottom: remy(4);
+  }
+  &__item-top {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+  }
+  &__vr {
+    @include tablet {
+      display: flex;
+      align-self: center;
+      margin: 0 remy(40);
+      border-left: 1px solid $Cloud;
+      height: remy(66);
+    }
+  }
+  &__item-bottom {
+    width: 100%;
+    display: flex;
+    @include tablet {
+      display: flex;
+      width: 75%;
+      align-items: center;
+    }
+    @include desktop {
+      width: 53%;
+    }
+    &--left {
+      width: 50%;
+    }
+    &--right {
+      width: 50%;
     }
   }
 }
