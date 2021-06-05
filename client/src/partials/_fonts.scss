@@ -3,6 +3,7 @@
 @use './resets' as *;
 
 h1 {
+
     font-size: remy(28);
     line-height: remy(36);
     @include tablet {
@@ -13,67 +14,77 @@ h1 {
 }
 
 h2 {
-    font-size: remy(20);
-    line-height: remy(28);
-    @include tablet {
-        font-size: remy(24);
-        line-height: remy(32);
-    }
+  font-size: remy(20);
+  line-height: remy(28);
+  @include tablet {
+    font-size: remy(24);
+    line-height: remy(32);
+  }
 }
 
 h3 {
-    font-size: remy(13);
-    line-height: remy(20);
-    @include tablet {
-        font-size: remy(14);
-        line-height: remy(22);
-    }
+  font-size: remy(13);
+  line-height: remy(20);
+  @include tablet {
+    font-size: remy(14);
+    line-height: remy(22);
+  }
 }
 
+// M H4 - table header
 h4 {
+  font-size: remy(11);
+  line-height: remy(16);
+
+  color: $Slate;
+
+  @include tablet {
     font-size: remy(11);
-    line-height: remy(16);
+    line-height: remy(18);
     color: $Slate;
     @include tablet {
         font-size: remy(11);
         line-height: remy(18);
     }
+  }
+
 }
 
 h5 {
+  font-size: remy(12);
+  line-height: remy(20);
+  @include tablet {
     font-size: remy(12);
     line-height: remy(20);
-    @include tablet {
-        font-size: remy(12);
-        line-height: remy(20);
-    }
+  }
 }
 
 p {
-    font-size: remy(15);
-    line-height: remy(26);
-    @include tablet {
-        font-size: remy(16);
-        line-height: remy(28);
-    }
+  font-size: remy(15);
+  line-height: remy(26);
+  @include tablet {
+    font-size: remy(16);
+    line-height: remy(28);
+  }
 }
 
 .p2 {
-    font-size: remy(13);
-    line-height: remy(20);
-    @include tablet {
-        font-size: remy(13);
-        line-height: remy(22);
-    }
+  font-size: remy(13);
+  line-height: remy(20);
+  @include tablet {
+    font-size: remy(14);
+
+    line-height: remy(22);
+  }
 }
 
 .p3 {
-    font-size: remy(11);
-    line-height: remy(16);
-    @include tablet {
-        font-size: remy(12);
-        line-height: remy(18);
-    }
+  font-size: remy(11);
+  line-height: remy(16);
+  @include tablet {
+    font-size: remy(12);
+    line-height: remy(18);
+  }
 }
 
 .text-link {
@@ -90,3 +101,22 @@ p {
   }
 
 
+label {
+  font-size: remy(13);
+  line-height: remy(20);
+  @include tablet {
+    font-size: remy(14);
+    line-height: remy(22);
+  }
+.text-link {
+  /* M H3 */
+  display: flex;
+  align-items: center;
+  font-family: Titillium Web, san-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+  color: $Indigo;
+  gap: remy(11.16);
+}

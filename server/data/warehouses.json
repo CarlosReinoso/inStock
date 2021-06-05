@@ -102,5 +102,18 @@
       "phone": "+1 (646) 123-1234",
       "email": "vmendoza@instock.com"
     }
+  },
+  {
+    "id": "9b7b39e0-1246-4ec0-9b69-3c12ddbc6847",
+    "name": "bolololo",
+    "address": "215 Essex Street",
+    "city": "Boston",
+    "country": "USA",
+    "contact": {
+      "name": "Vanessa Mendoza",
+      "position": "Warehouse Manager",
+      "phone": "+1 (646) 123-1234",
+      "email": "vmendoza@instock.com"
+    }
   }
 ]

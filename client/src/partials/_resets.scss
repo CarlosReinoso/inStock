@@ -22,5 +22,5 @@ a {
 }
 
 @function remy($pxsize) {
-    @return $pxsize/16+rem;
+  @return $pxsize/16 + rem;
 }
