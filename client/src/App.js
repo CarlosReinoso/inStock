@@ -8,6 +8,7 @@ import InventoryList from "./components/InventoryList/InventoryList";
 
 import { Route, Link } from "react-router-dom";
 import WarehouseInventory from "./components/WarehouseInventory/WarehouseInventory";
+import DetailedItem from "./components/DetailedItem/DetailedItem";
 
 import axios from "axios";
 
@@ -70,6 +71,7 @@ class App extends Component {
           path="/inventory"
           render={() => <InventoryList inventory={this.state.inventory} />}
         />
+        <Route />
       </div>
     );
   }
