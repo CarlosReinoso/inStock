@@ -3,7 +3,7 @@ const warehouseRoute = express.Router();
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
-warehouseRoute.get("/", (req, res) => {
+warehouseRoute.get("/", (_req, res) => {
   res.send("warehouse endpoint");
 });
 
@@ -16,7 +16,7 @@ warehouseRoute.post("/", (req, res) => {
   if (!warehouseList) {
     res.status(503).json({ message: "something is wrong with the server" });
   } else if (!name || !address || !city || !country || !contact) {
-    res.status(501).json({
+    res.status(400).json({
       message: "incorrect request, information missing",
       body: req.body,
     });
