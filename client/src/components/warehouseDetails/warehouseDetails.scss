@@ -1,0 +1,362 @@
+@use '../../partials/resets' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/breakpoints' as *;
+@use '../../partials/fonts' as *;
+
+.warehouse {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &__card {
+    align-self: center;
+    z-index: 1;
+    width: 90%;
+    margin-top: remy(-68);
+    margin-bottom: remy(96);
+    background-color: $White;
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+    border-radius: 3px;
+    @include desktop {
+      width: 80%;
+    }
+  }
+  &__card-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: remy(8);
+    margin-bottom: remy(24);
+    padding: remy(32) remy(24) remy(0) remy(24);
+    @include tablet {
+      flex-direction: row;
+      justify-content: flex-start;
+      padding: remy(32) remy(32) remy(0) remy(32);
+    }
+    @include desktop {
+      padding: remy(40) remy(40) remy(0) remy(40);
+    }
+    &--back-icon {
+      width: remy(32);
+      height: remy(24);
+    }
+    &--pen-icon {
+      padding: 0.4875rem;
+      height: remy(36);
+      width: remy(36);
+      background-color: $Indigo;
+      border-radius: 50%;
+      margin-left: auto;
+      @include tablet {
+        display: none;
+      }
+    }
+    &--button {
+      display: none;
+      @include tablet {
+        display: flex;
+        gap: remy(4);
+        margin-left: auto;
+        width: remy(81);
+        background-color: $Indigo;
+      }
+    }
+  }
+
+  &__table-header {
+    display: none;
+    @include tablet {
+      display: flex;
+      justify-content: space-around;
+      height: remy(40);
+      background-color: rgba(247, 248, 249, 1);
+      padding: remy(0) remy(32) remy(0) remy(32);
+      color: $Slate;
+      z-index: 3;
+      margin-bottom: remy(-2);
+      position: relative;
+    }
+    @include desktop {
+      padding: remy(0) remy(40) remy(0) remy(40);
+    }
+  }
+  &__table-list {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    &--left {
+      @include tablet {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10%;
+        width: 80%;
+      }
+      @include desktop {
+        width: 80%;
+        gap: 20%;
+      }
+    }
+    &--right {
+      @include tablet {
+        display: flex;
+        justify-content: flex-end;
+        gap: 36%;
+        width: 40%;
+      }
+      @include desktop {
+        width: 32%;
+      }
+    }
+  }
+  &__table-item {
+    display: flex;
+    font-size: remy(12);
+    align-items: center;
+    font-weight: 600;
+    &--info {
+      display: flex;
+      align-items: center;
+      font-size: remy(12);
+      width: 22%;
+      font-weight: 600;
+    }
+    &--action {
+      font-weight: 600;
+      justify-content: flex-end;
+      font-size: remy(12);
+    }
+  }
+  &__table-icon {
+    margin-left: remy(8.94);
+    width: remy(18);
+  }
+
+  &__search-container {
+    display: inline-flex;
+    justify-content: space-between;
+    border: 1px solid $Cloud;
+    border-radius: remy(20);
+    padding: remy(8) remy(16);
+    background-color: $White;
+    width: 100%;
+    @include tablet {
+    }
+  }
+  &__search-icon {
+    width: 18px;
+  }
+  &__card-header-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: remy(16);
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      gap: remy(16);
+      width: 55%;
+    }
+  }
+
+  &__button {
+    width: 100%;
+  }
+
+  &__label {
+    margin-top: remy(16);
+    margin-bottom: remy(4);
+    @include tablet {
+      display: none;
+    }
+  }
+  &__card-input {
+    border: none;
+  }
+  &__hr {
+    padding: remy(0) remy(-100);
+    border: none;
+    background-color: $Cloud;
+    height: 1px;
+    z-index: 2;
+  }
+
+  &__item {
+    padding: remy(0) remy(24) remy(27) remy(24);
+    @include tablet {
+      padding: remy(16) remy(32) remy(16) remy(32);
+    }
+    @include desktop {
+      padding: remy(16) remy(40) remy(16) remy(40);
+    }
+  }
+  &__item-top {
+    display: flex;
+    justify-content: space-between;
+    gap: remy(16);
+    @include tablet {
+      justify-content: flex-start;
+      gap: 0;
+    }
+  }
+  &__item-left {
+    width: 50%;
+    @include tablet {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 55%;
+      @include desktop {
+        width: 61%;
+      }
+    }
+    &--category {
+      width: 44%;
+      @include desktop {
+        width: 46%;
+      }
+    }
+    &--address {
+      @include tablet {
+        width: 55%;
+        padding-right: 20%;
+      }
+      @include desktop {
+        padding-right: 0;
+      }
+    }
+  }
+  &__chevron {
+    max-height: remy(18);
+    max-width: remy(18);
+  }
+  &__item-right {
+    width: 50%;
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      gap: 15%;
+      width: 55%;
+      align-items: center;
+    }
+    @include desktop {
+      width: 53%;
+    }
+    &--qty {
+      @include tablet {
+        display: flex;
+        justify-content: flex-start;
+        width: 30%;
+      }
+    }
+    &--status-in {
+      display: flex;
+      justify-content: center;
+      width: 60%;
+      font-weight: 600;
+      font-size: remy(11);
+      background-color: rgba(21, 132, 99, 0.07);
+      border-radius: remy(20);
+      color: $Green;
+      @include tablet {
+        width: 24%;
+      }
+    }
+    &--status-out {
+      display: flex;
+      justify-content: center;
+      width: 60%;
+      font-weight: 600;
+      font-size: remy(11);
+      background-color: rgba(201, 69, 21, 0.07);
+      border-radius: remy(20);
+      color: $Red;
+      @include tablet {
+        width: 30%;
+      }
+    }
+
+    &--details {
+      align-self: flex-end;
+    }
+  }
+  &__item-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: remy(19);
+    @include tablet {
+      display: none;
+    }
+    &--bin {
+      width: 50%;
+    }
+    &--pen {
+      display: flex;
+      justify-content: flex-end;
+      width: 50%;
+      margin-bottom: 7px;
+    }
+    &--tablet {
+      display: none;
+      @include tablet {
+        display: flex;
+        align-items: center;
+        gap: remy(24);
+      }
+    }
+  }
+}
+
+.warehouse-head {
+  &__item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: remy(16);
+    @include tablet {
+      flex-direction: row;
+      gap: 0;
+    }
+    padding: remy(0) remy(24) remy(27) remy(24);
+    @include tablet {
+      padding: remy(16) remy(32) remy(16) remy(32);
+    }
+    @include desktop {
+      padding: remy(16) remy(40) remy(16) remy(40);
+    }
+  }
+  &__label {
+    margin-top: remy(16);
+    margin-bottom: remy(4);
+  }
+  &__item-top {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+  }
+  &__vr {
+    @include tablet {
+      display: flex;
+      align-self: center;
+      margin: 0 remy(40);
+      border-left: 1px solid $Cloud;
+      height: remy(66);
+    }
+  }
+  &__item-bottom {
+    width: 100%;
+    display: flex;
+    @include tablet {
+      display: flex;
+      width: 75%;
+      align-items: center;
+    }
+    @include desktop {
+      width: 53%;
+    }
+    &--left {
+      width: 50%;
+    }
+    &--right {
+      width: 50%;
+    }
+  }
+}
