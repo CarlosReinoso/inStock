@@ -83,6 +83,7 @@ p {
 label {
   font-size: remy(13);
   line-height: remy(20);
+  font-weight: 600;
   @include tablet {
     font-size: remy(14);
     line-height: remy(22);

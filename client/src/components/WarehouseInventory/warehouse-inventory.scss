@@ -21,22 +21,82 @@
     margin-left: remy(28);
     margin-right: remy(24);
     display: flex;
+    margin-bottom: remy(24);
   }
   &__title {
     display: flex;
     align-items: center;
     height: 100%;
   }
-  &__edit-logo {
+  &__edit-container {
     width: remy(36);
     height: remy(36);
-    background-color: $Indigo;
-    border-radius: 50%;
-    padding: remy(7);
     margin-right: 0;
     margin-left: auto;
+    display: flex;
+    background-color: $Indigo;
+    justify-content: center;
+    border-radius: 50%;
+    @include tablet {
+      width: auto;
+      border-radius: remy(20);
+      padding: 0 remy(16);
+    }
+
+    align-items: center;
+  }
+  &__edit-title {
+    color: $White;
+    display: none;
+    @include tablet {
+      display: inline;
+    }
+  }
+
+  &__edit-logo {
+    width: remy(24);
+    height: remy(24);
+    @include tablet {
+      margin-right: remy(6);
+    }
+
+    @include tablet {
+    }
   }
   &__back-logo {
     width: remy(24);
+  }
+
+  &__address {
+    font-style: normal;
+    margin: 0 remy(24);
+    display: flex;
+    // flex-direction: column;
+    flex-wrap: wrap;
+  }
+  &__label {
+    display: inline-flex;
+  }
+
+  &__div-1 {
+    order: 1;
+    flex-basis: 100%;
+    flex-grow: 3;
+    margin-bottom: remy(16);
+    @include tablet {
+      flex-basis: 0%;
+      border-right: remy(1) solid $Cloud;
+      margin-right: remy(40);
+    }
+  }
+  &__div-2 {
+    order: 3;
+    flex-grow: 1;
+  }
+  &__div-3 {
+    order: 2;
+    flex-grow: 1;
+    margin-right: remy(16);
+    margin-bottom: remy(24);
   }
 }

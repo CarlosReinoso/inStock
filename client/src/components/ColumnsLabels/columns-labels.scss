@@ -1,0 +1,47 @@
+@use '../../partials/resets' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/breakpoints' as *;
+@use '../../partials/fonts' as *;
+
+.columns-labels {
+  &__columns {
+    display: none;
+    @include tablet {
+      background-color: $Light-Grey;
+      height: remy(40);
+      padding: 0 remy(32);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-label {
+      @include tablet {
+        display: flex !important;
+      }
+    }
+  }
+  &__label-container {
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+    // margin-bottom: remy(24);
+    & img {
+      height: remy(16);
+      align-self: center;
+    }
+    @include tablet {
+      width: 50%;
+      flex-grow: 1;
+    }
+  }
+}
+
+.--end {
+  margin-left: auto;
+  margin-right: 0;
+  width: auto;
+}
+
+.--marginright {
+  margin-right: remy(16);
+}

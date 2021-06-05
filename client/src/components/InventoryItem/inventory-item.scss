@@ -112,6 +112,7 @@ label {
       min-width: remy(61);
       max-width: remy(120);
       width: 80%;
+      text-align: center;
 
       @include tablet {
         margin: 0;
