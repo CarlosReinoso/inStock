@@ -4,6 +4,8 @@
 @use '../../partials/fonts' as *;
 
 .warehouse-list {
+  display: flex;
+  flex-direction: column;
   &__table-header {
     display: none;
     @include tablet {
@@ -48,6 +50,14 @@
     width: remy(18);
   }
   &__card {
+    box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+    border-radius: 3px;
+    align-self: center;
+    z-index: 1;
+    width: 90%;
+    margin-top: remy(-68);
+    margin-bottom: remy(96);
+    background-color: $White;
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
     border-radius: 3px;
   }
@@ -180,6 +190,12 @@
     margin-top: remy(19);
     @include tablet {
       display: none;
+    }
+    &--bin-button {
+      background-color: $White;
+    }
+    &--bin-button:hover {
+      background-color: $White;
     }
     &--bin {
       width: 50%;

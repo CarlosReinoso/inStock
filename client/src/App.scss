@@ -4,10 +4,12 @@
 @use './partials/typeface' as *;
 @use './partials/variables' as *;
 
+
 label {
   color: $Slate;
 }
 .App {
   background-color: $Light-Grey;
 }
+
 

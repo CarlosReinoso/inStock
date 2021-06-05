@@ -8,7 +8,16 @@ import chevronRight from "../../assets/Icons/chevron_right-24px.svg";
 import searchIcon from "../../assets/Icons/search-24px.svg";
 import sortIcon from "../../assets/Icons/sort-24px.svg";
 
+import DeleteModal from "../deleteModal/DeleteModal";
+import useModal from "../useModal/useModal";
+
 const WarehouseList = () => {
+  const { isShowing, toggle } = useModal();
+
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
   const warehousesDataMarkup = warehousesData.map((wh) => {
     return (
       <>
@@ -53,7 +62,14 @@ const WarehouseList = () => {
             </div>
             <div className="warehouse-list__item-bottom">
               <div className="warehouse-list__item-bottom--bin">
-                <img src={binIcon} alt="" />
+                <button
+                  className="warehouse-list__item-bottom--bin-button"
+                  onClick={toggle}
+                >
+                  <DeleteModal isShowing={isShowing} hide={toggle} />
+
+                  <img src={binIcon} alt="" />
+                </button>
               </div>
               <div className="warehouse-list__item-bottom--pen">
                 <img src={penIcon} alt="" />
@@ -70,6 +86,12 @@ const WarehouseList = () => {
       <div className="warehouse-list__card">
         <div className="warehouse-list__card-header">
           <h1>Warehouses</h1>
+
+          <div className="test">
+            <button onClick={toggle}>Showing Model</button>
+            <DeleteModal isShowing={isShowing} hide={toggle} />
+          </div>
+
           <div className="warehouse-list__card-header-container">
             <div className="warehouse-list__search-container">
               <input

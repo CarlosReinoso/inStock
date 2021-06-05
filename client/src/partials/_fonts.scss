@@ -40,6 +40,11 @@ h4 {
   @include tablet {
     font-size: remy(11);
     line-height: remy(18);
+    color: $Slate;
+    @include tablet {
+      font-size: remy(11);
+      line-height: remy(18);
+    }
   }
 }
 
