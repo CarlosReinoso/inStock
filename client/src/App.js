@@ -1,7 +1,7 @@
 
 import WarehouseList from './components/warehouseList/WarehouseList';
 import "./App.scss";
-import Header from "./components/header/header";
+import Header from "./components/header/Header";
 import WarehouseDetails from "./components/warehouseDetails/WarehouseDetails";
 import { Route } from "react-router-dom";
 import InventoryList from "./components/InventoryList/InventoryList";
