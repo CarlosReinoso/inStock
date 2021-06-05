@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const warehouseRoute = require("./routes/warehouseRoute");
 const inventoryRoute = require("./routes/inventoryRoute");
+
 require("dotenv").config();
 app.use(express.json());
 app.use(cors());
