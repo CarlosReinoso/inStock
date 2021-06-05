@@ -20,7 +20,7 @@ const InventoryItem = ({ item }) => {
       <div className="inventory-item__label --order-one">
         <label>INVENTORY ITEM </label>
         <div className="inventory-item__chevron-container ">
-          <Link className="inventory-item__link" to={`/${item.itemName}`}>
+          <Link className="inventory-item__link" to={`/inventory/${item.id}`}>
             <p className="inventory-item__item-name">{item.itemName}</p>
           </Link>
           <img className="inventory-item__chevron" src={chevronRight} />
