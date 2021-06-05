@@ -40,6 +40,11 @@ h4 {
   @include tablet {
     font-size: remy(11);
     line-height: remy(18);
+    color: $Slate;
+    @include tablet {
+      font-size: remy(11);
+      line-height: remy(18);
+    }
   }
 }
 
@@ -80,6 +85,7 @@ p {
   }
 }
 
+
 label {
   font-size: remy(13);
   line-height: remy(20);
@@ -89,6 +95,7 @@ label {
     line-height: remy(22);
   }
 }
+
 .text-link {
   /* M H3 */
   display: flex;
@@ -101,3 +108,5 @@ label {
   color: $Indigo;
   gap: remy(11.16);
 }
+
+
