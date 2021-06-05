@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 
 class Header extends Component {
   render() {
-    const { location } = this.props.match.params;
-    console.log(this.props.match);
+    const { pathname } = this.props.location;
+
     return (
       <header className="header">
         <img
@@ -22,7 +22,7 @@ class Header extends Component {
               <Link
                 to="/warehouse"
                 className={`header__list-button ${
-                  location === "warehouse" ? "header__list-button--active" : ""
+                  pathname === "/warehouse" ? "header__list-button--active" : ""
                 }`}
               >
                 Warehouse
@@ -32,7 +32,7 @@ class Header extends Component {
               <Link
                 to="/inventory"
                 className={`header__list-button ${
-                  location === "inventory" ? "header__list-button--active" : ""
+                  pathname === "/inventory" ? "header__list-button--active" : ""
                 }`}
               >
                 Inventory
