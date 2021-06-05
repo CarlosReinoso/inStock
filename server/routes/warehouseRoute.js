@@ -3,8 +3,13 @@ const warehouseRoute = express.Router();
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
+const readWarehouseData = () => {
+  return JSON.parse(fs.readFileSync("./data/warehouses.json"));
+};
+
 warehouseRoute.get("/", (_req, res) => {
-  res.send("warehouse endpoint");
+  const warehouseList = readWarehouseData();
+  res.status(200).json(warehouseList);
 });
 
 warehouseRoute.post("/", (req, res) => {

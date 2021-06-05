@@ -20,9 +20,10 @@
     display: flex;
     justify-content: flex-start;
     width: 50%;
-    margin-bottom: remy(24);
+    // margin-bottom: remy(24);
     & img {
-      height: remy(24);
+      height: remy(16);
+      align-self: center;
     }
     @include tablet {
       width: 50%;
@@ -33,9 +34,12 @@
   &__columns {
     display: none;
     @include tablet {
+      background-color: $Light-Grey;
+      height: remy(40);
       margin: 0 remy(32);
       display: flex;
       justify-content: space-between;
+      align-items: center;
     }
     &-label {
       @include tablet {

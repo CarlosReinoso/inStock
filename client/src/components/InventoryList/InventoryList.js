@@ -7,7 +7,7 @@ import inventory from "../../inventories.json";
 import icon from "../../assets/Icons/sort-24px.svg";
 
 class InventoryList extends Component {
-  state = { search: "Bag", list: inventory };
+  state = { search: "", list: this.props.inventory };
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.search !== "" && prevState.search !== this.state.search) {
@@ -25,11 +25,20 @@ class InventoryList extends Component {
     }
   }
 
+  componentDidMount() {
+    console.log(this.props, "props inventory");
+    console.log(this.state);
+    this.setState({ ...this.state, list: this.props.inventory }, () =>
+      console.log(this.state)
+    );
+  }
+
   searchHandler = (query) => {
     this.setState({ ...this.state, search: query });
   };
 
   render() {
+    const { inventory } = this.props;
     return (
       <section className="inventory-list">
         <SearchBar
