@@ -5,6 +5,7 @@ import WarehouseDetails from "./components/warehouseDetails/WarehouseDetails";
 import { Component } from "react";
 
 import InventoryList from "./components/InventoryList/InventoryList";
+import AddInventoryItem from "./components/addInventoryItem/AddInventoryItem";
 
 import { Route, Link } from "react-router-dom";
 import WarehouseInventory from "./components/WarehouseInventory/WarehouseInventory";
@@ -71,10 +72,12 @@ class App extends Component {
           path="/inventory"
           render={() => <InventoryList inventory={this.state.inventory} />}
         />
+
         <Route
           path="/inventory/:itemId"
           render={(renderProps) => <DetailedItem {...renderProps} />}
         />
+
       </div>
     );
   }
