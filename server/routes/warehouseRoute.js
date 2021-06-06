@@ -6,6 +6,13 @@ const { v4: uuidv4 } = require("uuid");
 const readWarehouseData = () => {
   return JSON.parse(fs.readFileSync("./data/warehouses.json"));
 };
+const readInventoryData = () => {
+  return JSON.parse(fs.readFileSync("./data/inventories.json"));
+};
+
+const writeWarehouseData = (myData) => {
+  return JSON.stringify(fs.writeFileSync("./data/warehouses.json"), myData);
+};
 
 warehouseRoute.get("/", (_req, res) => {
   const warehouseList = readWarehouseData();
@@ -32,6 +39,85 @@ warehouseRoute.post("/", (req, res) => {
   }
 });
 
+//add item to inventory
+warehouseRoute.post("/:warehouseName", (req, res) => {
+  const inventoryData = readInventoryData();
+
+  const {
+    warehouseID,
+    warehouseName,
+    itemName,
+    description,
+    category,
+    status,
+    quantity,
+  } = req.body;
+
+  const newInventory = {
+    id: uuidv4(),
+    warehouseID,
+    warehouseName,
+    itemName,
+    description,
+    category,
+    status,
+    quantity,
+  };
+
+  if (!inventoryData) {
+    res.status(503).json({ message: "something is wrong with the server" });
+  } else if (!warehouseID || !warehouseName || !itemName || !description || !category || !status || !quantity) {
+    res.status(400).json({
+      message: "incorrect request, information missing",
+      body: req.body,
+    });
+  } else {
+    inventoryData.push(newInventory);
+    fs.writeFileSync("./data/inventories.json", JSON.stringify(inventoryData));
+    res.status(200).json(inventoryData);
+  }
+});
+
+
+//edit an item in inventory
+warehouseRoute.put("/:warehouseName", (req, res) => {
+  const inventoryData = readInventoryData();
+
+  const {
+    warehouseID,
+    warehouseName,
+    itemName,
+    description,
+    category,
+    status,
+    quantity,
+  } = req.body;
+
+  const newInventory = {
+    id: uuidv4(),
+    warehouseID,
+    warehouseName,
+    itemName,
+    description,
+    category,
+    status,
+    quantity,
+  };
+
+  if (!inventoryData) {
+    res.status(503).json({ message: "something is wrong with the server" });
+  } else if (!warehouseID || !warehouseName || !itemName || !description || !category || !status || !quantity) {
+    res.status(400).json({
+      message: "incorrect request, information missing",
+      body: req.body,
+    });
+  } else {
+    inventoryData.push(newInventory);
+    fs.writeFileSync("./data/inventories.json", JSON.stringify(inventoryData));
+    res.status(200).json(inventoryData);
+  }
+});
+
 warehouseRoute.get("/:warehouseName", (req, res) => {
   const warehouse = readWarehouseData();
   const data = warehouse.find((item) => item.name === req.params.warehouseName);
@@ -42,5 +128,24 @@ warehouseRoute.get("/:warehouseName", (req, res) => {
   }
 });
 
+warehouseRoute.delete("/:warehouseId", (req, res) => {
+  const warehouseData = readWarehouseData();
+  const inventoryData = readInventoryData();
+  const warehouseID = req.params.warehouseId;
+  const warehouse = warehouseData.find((item) => item.id === warehouseID);
+  const newInventory = inventoryData.filter(
+    (item) => item.warehouseID !== warehouseID
+  );
+  newWarehouseList = warehouseData.filter((wh) => wh.id !== warehouseID);
+
+  fs.writeFileSync("./data/warehouses.json", JSON.stringify(newWarehouseList));
+  fs.writeFileSync("./data/inventories.json", JSON.stringify(newInventory));
+
+  const sendBack = {
+    warehouse,
+    newInventory,
+  };
+  res.status(200).send(sendBack);
+});
 
 module.exports = warehouseRoute;

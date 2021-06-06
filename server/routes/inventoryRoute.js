@@ -50,4 +50,59 @@ inventoryRoute.get("/:itemID", (req, res) => {
   }
 });
 
+//edit an item in inventory
+inventoryRoute.put("/:inventoryId", (req, res) => {
+  const inventoryData = readInventoryData();
+  const inventoryId = req.params.inventoryId;
+  // console.log("inventoryId", inventoryId);
+  let item = inventoryData.find((i) => i.id === inventoryId);
+  console.log("item", item);
+
+  const removedItemList = inventoryData.filter(
+    (item) => item.id !== inventoryId
+  );
+  // console.log("removedItemList", removedItemList);
+
+  item = {
+    id: req.params.inventoryId,
+    warehouseID: req.body.warehouseID,
+    warehouseName: req.body.warehouseName,
+    itemName: req.body.itemName,
+    description: req.body.description,
+    category: req.body.category,
+    status: req.body.status,
+    quantity: 500
+  };
+  console.log('item after +++', item)
+  
+  const {
+    warehouseID,
+    warehouseName,
+    itemName,
+    description,
+    category,
+    status,
+  } = req.body;
+
+  if (!inventoryData) {
+    res.status(503).json({ message: "something is wrong with the server" });
+  } else if (
+    !warehouseID ||
+    !warehouseName ||
+    !itemName ||
+    !description ||
+    !category ||
+    !status
+  ) {
+    res.status(400).json({
+      message: "incorrect request, information missing",
+      body: req.body,
+    });
+  } else {
+    removedItemList.push(item);
+    fs.writeFileSync("./data/inventories.json", JSON.stringify(removedItemList));
+    res.status(200).json(removedItemList);
+  }
+});
+
 module.exports = inventoryRoute;
