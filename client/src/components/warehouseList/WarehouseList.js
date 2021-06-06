@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import "./warehouseList.scss";
 import React, { Component } from 'react'
 import searchIcon from "../../assets/Icons/search-24px.svg";

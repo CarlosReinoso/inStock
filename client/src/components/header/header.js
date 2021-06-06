@@ -6,8 +6,23 @@ import inStockLogo from "../../assets/Icons/InStock-Logo.svg";
 import { Link } from "react-router-dom";
 
 class Header extends Component {
+  state = { pathname: this.props.location.pathname };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.location.pathname !== this.props.location.pathname &&
+      (this.props.location.pathname === "/warehouse" ||
+        this.props.location.pathname === "/inventory")
+    ) {
+      this.setState({ pathname: this.props.location.pathname });
+    }
+  }
+
   render() {
-    const { pathname } = this.props.location;
+
+    const { pathname } = this.state;
+    console.log(this.state);
+
 
     return (
       <header className="header">
