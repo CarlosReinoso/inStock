@@ -1,0 +1,84 @@
+@use '../../partials/resets' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/buttons' as *;
+@use '../../partials/breakpoints' as *;
+
+.detailed-item {
+  @include main-component;
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+  padding: remy(24) 0;
+  &__title {
+    padding: 0 remy(24);
+    display: flex;
+    padding-bottom: remy(24);
+    border-bottom: remy(1) solid $Cloud;
+  }
+  &__item-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: remy(4) remy(8);
+    border-radius: remy(20);
+    margin-bottom: remy(16);
+    min-width: remy(61);
+    max-width: remy(120);
+    width: 80%;
+    text-align: center;
+
+    @include tablet {
+      margin: 0;
+    }
+    &--available {
+      background-color: rgba($color: $Green, $alpha: 0.07);
+      color: $Green;
+    }
+    &--unavailable {
+      background-color: rgba($color: $Red, $alpha: 0.07);
+      color: $Red;
+    }
+  }
+
+  &__label {
+    display: block !important;
+    margin-bottom: remy(16);
+  }
+
+  &__information {
+    margin: remy(24) remy(24) 0 remy(24);
+    @include tablet {
+      display: flex;
+    }
+  }
+  &__top {
+    @include tablet {
+      flex-grow: 1;
+      width: 50%;
+      padding-right: remy(24);
+      border-right: remy(1) solid $Cloud;
+    }
+  }
+  &__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    @include tablet {
+      width: 50%;
+      padding-left: remy(24);
+    }
+  }
+  &__display-label {
+    display: block;
+  }
+  &__back {
+    display: flex;
+    color: $Black;
+    width: 30%;
+  }
+}
+
+.--width-one-hundred {
+  width: 100%;
+}
+
+.--flex-grow {
+  flex-grow: 1;
+}
