@@ -5,7 +5,7 @@ import WarehouseDetails from "./components/warehouseDetails/WarehouseDetails";
 import { Component } from "react";
 
 import InventoryList from "./components/InventoryList/InventoryList";
-import AddInventoryItem from './components/addInventoryItem/AddInventoryItem';
+import AddInventoryItem from "./components/addInventoryItem/AddInventoryItem";
 
 import { Route, Link } from "react-router-dom";
 import WarehouseInventory from "./components/WarehouseInventory/WarehouseInventory";
@@ -59,11 +59,8 @@ class App extends Component {
       return <h3>...Loading...or....check your internet connection</h3>;
     }
 
-
-function App() {
     return (
       <div className="App">
-        <Route path="/:location" component={Header} />
         <Route path="/" render={(renderProps) => <Header {...renderProps} />} />
         <Route
           path="/warehouse/:warehouseName"

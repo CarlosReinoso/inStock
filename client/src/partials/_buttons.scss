@@ -82,7 +82,10 @@ button:hover {
   background-color: $Graphite;
 }
 
-input, textarea, option, select {
+.input-form,
+textarea,
+option,
+select {
   height: remy(38);
   width: 100%;
   border-radius: remy(20);
@@ -97,6 +100,3 @@ input, textarea, option, select {
     margin-bottom: remy(32);
   }
 }
-
-
-

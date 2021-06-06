@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 class Header extends Component {
   render() {
     const { pathname } = this.props.location;
-
     return (
       <header className="header">
         <img
