@@ -1,7 +1,9 @@
 import WarehouseList from "./components/warehouseList/WarehouseList";
 import "./App.scss";
 import Header from "./components/Header/Header";
+
 import WarehouseDetails from "./components/warehouseDetails/WarehouseDetails";
+
 import { Component } from "react";
 
 import InventoryList from "./components/InventoryList/InventoryList";
@@ -12,7 +14,11 @@ import WarehouseInventory from "./components/WarehouseInventory/WarehouseInvento
 import DetailedItem from "./components/DetailedItem/DetailedItem";
 
 import axios from "axios";
+
+import WarehouseListItem from "./components/warehouseListItem/WarehouseListItem";
+
 import WarehouseForm from "./components/WarehouseForm/WarehouseForm";
+
 
 const URL = "http://localhost:8080";
 
