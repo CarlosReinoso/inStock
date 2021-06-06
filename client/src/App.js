@@ -1,15 +1,15 @@
 import WarehouseList from "./components/warehouseList/WarehouseList";
 import "./App.scss";
-import Header from "./components/Header/Header";
-import WarehouseDetails from "./components/warehouseDetails/WarehouseDetails";
+import Header from "./components/header/Header";
 import { Component } from "react";
 
 import InventoryList from "./components/InventoryList/InventoryList";
 
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import WarehouseInventory from "./components/WarehouseInventory/WarehouseInventory";
 
 import axios from "axios";
+import WarehouseListItem from "./components/warehouseListItem/WarehouseListItem";
 
 const URL = "http://localhost:8080";
 
@@ -27,25 +27,25 @@ class App extends Component {
   componentDidUpdate() {}
 
   getWarehouseList() {
-    axios.get(`${URL}/warehouse`).then((res) => {
-      console.log(res.data);
+    axios.get(`${URL}/warehouses`).then((res) => {
+      // console.log(res.data);
       this.setState(
         {
           warehouseList: res.data,
-        },
-        () => console.log("my state ", this.state)
+        }
+        // () => console.log("my state ", this.state)
       );
     });
   }
 
   getInventoryList() {
     axios.get(`${URL}/inventory`).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       this.setState(
         {
           inventory: res.data,
-        },
-        () => console.log("my state ", this.state)
+        }
+        // () => console.log("my state ", this.state)
       );
     });
   }
@@ -62,10 +62,10 @@ class App extends Component {
       <div className="App">
         <Route path="/" render={(renderProps) => <Header {...renderProps} />} />
         <Route
-          path="/warehouse/:warehouseName"
+          path="/warehouses/:warehouseName"
           component={WarehouseInventory}
         />
-        <Route exact path="/warehouse" component={WarehouseList} />
+        <Route exact path="/warehouses" component={WarehouseList} />
         <Route
           path="/inventory"
           render={() => <InventoryList inventory={this.state.inventory} />}
