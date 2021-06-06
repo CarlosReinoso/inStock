@@ -6,8 +6,9 @@ class SearchBar extends Component {
   state = { search: "" };
 
   changeHandler = (e) => {
-    this.setState({ search: e.target.value }, console.log(this.state));
-    this.props.searchHandler(this.state.search);
+    this.setState({ search: e.target.value }, () =>
+      this.props.searchHandler(this.state.search)
+    );
   };
 
   render() {

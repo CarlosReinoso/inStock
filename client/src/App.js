@@ -8,12 +8,14 @@ import InventoryList from "./components/InventoryList/InventoryList";
 
 import { Route, Link } from "react-router-dom";
 import WarehouseInventory from "./components/WarehouseInventory/WarehouseInventory";
+import DetailedItem from "./components/DetailedItem/DetailedItem";
 
 import axios from "axios";
 
 const URL = "http://localhost:8080";
 
 class App extends Component {
+  controller = new AbortController();
   state = {
     warehouseList: [],
     inventory: [],
@@ -24,9 +26,7 @@ class App extends Component {
     this.getInventoryList();
   }
 
-  componentDidUpdate() {}
-
-  getWarehouseList() {
+  getWarehouseList = () => {
     axios.get(`${URL}/warehouse`).then((res) => {
       console.log(res.data);
       this.setState(
@@ -36,7 +36,7 @@ class App extends Component {
         () => console.log("my state ", this.state)
       );
     });
-  }
+  };
 
   getInventoryList() {
     axios.get(`${URL}/inventory`).then((res) => {
@@ -67,8 +67,13 @@ class App extends Component {
         />
         <Route exact path="/warehouse" component={WarehouseList} />
         <Route
+          exact
           path="/inventory"
           render={() => <InventoryList inventory={this.state.inventory} />}
+        />
+        <Route
+          path="/inventory/:itemId"
+          render={(renderProps) => <DetailedItem {...renderProps} />}
         />
       </div>
     );
