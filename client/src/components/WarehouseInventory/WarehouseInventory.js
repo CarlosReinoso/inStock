@@ -6,6 +6,7 @@ import arrowBack from "../../assets/Icons/arrow_back-24px.svg";
 import InventoryItem from "../InventoryItem/inventory-item";
 import inventory from "../../inventories.json";
 import ColumnsLabels from "../ColumnsLabels/ColumnsLabels";
+import EditButton from "../EditButton/EditButton";
 const warehouseInfo = {
   id: "2922c286-16cd-4d43-ab98-c79f698aeab0",
   name: "Manhattan",
@@ -36,22 +37,7 @@ class WarehouseInventory extends Component {
           />
 
           <h1 className="warehouse-inventory__title">{warehouseName}</h1>
-          <div className="warehouse-inventory__edit-container">
-            <svg
-              className="warehouse-inventory__edit-logo"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M3 17.25V21H6.75L17.81 9.94L14.06 6.19L3 17.25ZM20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04V7.04Z"
-                fill="#fff"
-              />
-            </svg>
-            <h3 className="warehouse-inventory__edit-title">Edit</h3>
-          </div>
+          <EditButton />
         </section>
 
         <address className="warehouse-inventory__address">
