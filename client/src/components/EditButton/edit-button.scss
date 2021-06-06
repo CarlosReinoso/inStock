@@ -1,0 +1,42 @@
+@use '../../partials/resets' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/buttons' as *;
+@use '../../partials/breakpoints' as *;
+
+.edit-button {
+  &__edit-container {
+    width: remy(36);
+    height: remy(36);
+    margin-right: 0;
+    margin-left: auto;
+    display: flex;
+    background-color: $Indigo;
+    justify-content: center;
+    border-radius: 50%;
+    @include tablet {
+      width: auto;
+      border-radius: remy(20);
+      padding: 0 remy(16);
+    }
+
+    align-items: center;
+  }
+  &__edit-title {
+    color: $White;
+    display: none;
+    @include tablet {
+      display: inline;
+    }
+  }
+
+  &__edit-logo {
+    width: remy(24);
+    height: remy(24);
+    @include tablet {
+      margin-right: remy(6);
+    }
+
+    @include tablet {
+    }
+  }
+}

@@ -3,7 +3,7 @@ const inventoryRoute = express.Router();
 const fs = require("fs");
 
 const readInventoryData = () => {
-  return JSON.parse(fs.readFileSync("./data/inventorie.json"));
+  return JSON.parse(fs.readFileSync("./data/inventories.json"));
 };
 
 const writeInventoryData = (myData) => {
@@ -37,6 +37,16 @@ inventoryRoute.get("/", (req, res) => {
     } else {
       res.status(200).json(inventoryFiltered);
     }
+  }
+});
+
+inventoryRoute.get("/:itemID", (req, res) => {
+  const inventory = readInventoryData();
+  const data = inventory.find((item) => item.id === req.params.itemID);
+  if (!data) {
+    res.status(404).json({ message: "Item not found" });
+  } else {
+    res.status(200).send({ data });
   }
 });
 
