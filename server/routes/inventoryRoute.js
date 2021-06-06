@@ -2,6 +2,19 @@ const express = require("express");
 const inventoryRoute = express.Router();
 const fs = require("fs");
 
+const readInventoryData = () => {
+  return JSON.parse(fs.readFileSync("./data/inventorie.json"));
+};
+
+const writeInventoryData = (myData) => {
+  return JSON.stringify(fs.writeFileSync("./data/inventories.json", myData));
+};
+
+const getInventoriesList = (_req, res) => {
+  const inventoryList = readWarehouseData();
+  res.status(200).json(inventoryList);
+};
+
 inventoryRoute.get("/", (req, res) => {
   const inventory = JSON.parse(fs.readFileSync("./data/inventories.json"));
   if (!req.query.warehouseID) {

@@ -14,7 +14,7 @@ class SearchBar extends Component {
     const { title, place } = this.props;
     return (
       <form className="search-bar">
-        <h2 className="search-bar__title">{title}</h2>
+        <h1 className="search-bar__title">{title}</h1>
         <input
           onChange={this.changeHandler}
           value={this.state.search}

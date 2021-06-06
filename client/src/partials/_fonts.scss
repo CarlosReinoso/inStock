@@ -85,24 +85,28 @@ p {
   }
 }
 
+
 label {
   font-size: remy(13);
   line-height: remy(20);
+  font-weight: 600;
   @include tablet {
     font-size: remy(14);
     line-height: remy(22);
   }
-
-  .text-link {
-    /* M H3 */
-    display: flex;
-    align-items: center;
-    font-family: "Titillium Web", san-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 13px;
-    line-height: 20px;
-    color: $Indigo;
-    gap: remy(11.16);
-  }
 }
+
+.text-link {
+  /* M H3 */
+  display: flex;
+  align-items: center;
+  font-family: Titillium Web, san-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+  color: $Indigo;
+  gap: remy(11.16);
+}
+
+
