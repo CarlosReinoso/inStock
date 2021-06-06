@@ -50,6 +50,47 @@ inventoryRoute.get("/:itemID", (req, res) => {
   }
 });
 
+
+//add item to inventory
+inventoryRoute.post("/", (req, res) => {
+  const inventoryData = readInventoryData();
+
+  const {
+    warehouseID,
+    warehouseName,
+    itemName,
+    description,
+    category,
+    status,
+    quantity,
+  } = req.body;
+
+  const newInventory = {
+    id: uuidv4(),
+    warehouseID,
+    warehouseName,
+    itemName,
+    description,
+    category,
+    status,
+    quantity,
+  };
+
+  if (!inventoryData) {
+    res.status(503).json({ message: "something is wrong with the server" });
+  } else if (!warehouseID || !warehouseName || !itemName || !description || !category || !status || !quantity) {
+    res.status(400).json({
+      message: "incorrect request, information missing",
+      body: req.body,
+    });
+  } else {
+    inventoryData.push(newInventory);
+    fs.writeFileSync("./data/inventories.json", JSON.stringify(inventoryData));
+    res.status(200).json(inventoryData);
+  }
+});
+
+
 //edit an item in inventory
 inventoryRoute.put("/:inventoryId", (req, res) => {
   const inventoryData = readInventoryData();
