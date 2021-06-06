@@ -32,4 +32,15 @@ warehouseRoute.post("/", (req, res) => {
   }
 });
 
+warehouseRoute.get("/:warehouseName", (req, res) => {
+  const warehouse = readWarehouseData();
+  const data = warehouse.find((item) => item.name === req.params.warehouseName);
+  if (!data) {
+    res.status(404).json({ message: "Item not found" });
+  } else {
+    res.status(200).send({ data });
+  }
+});
+
+
 module.exports = warehouseRoute;

@@ -11,7 +11,7 @@ class Header extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (
       prevProps.location.pathname !== this.props.location.pathname &&
-      (this.props.location.pathname === "/warehouse" ||
+      (this.props.location.pathname === "/warehouses" ||
         this.props.location.pathname === "/inventory")
     ) {
       this.setState({ pathname: this.props.location.pathname });
@@ -33,12 +33,12 @@ class Header extends Component {
           <ul className="header__list">
             <li className="header__item header__item--margin">
               <Link
-                to="/warehouse"
+                to="/warehouses"
                 className={`header__list-button ${
-                  pathname === "/warehouse" ? "header__list-button--active" : ""
+                  pathname === "/warehouses" ? "header__list-button--active" : ""
                 }`}
               >
-                Warehouse
+                Warehouses
               </Link>
             </li>
             <li className="header__item">

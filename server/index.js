@@ -8,7 +8,7 @@ require("dotenv").config();
 app.use(express.json());
 app.use(cors());
 
-app.use("/warehouse", warehouseRoute);
+app.use("/warehouses", warehouseRoute);
 app.use("/inventory", inventoryRoute);
 
 app.listen(process.env.PORT || 3030, () =>
