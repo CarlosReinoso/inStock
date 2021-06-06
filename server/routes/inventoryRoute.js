@@ -1,6 +1,7 @@
 const express = require("express");
 const inventoryRoute = express.Router();
 const fs = require("fs");
+const { v4: uuidv4 } = require("uuid");
 
 const readInventoryData = () => {
   return JSON.parse(fs.readFileSync("./data/inventories.json"));
@@ -75,7 +76,7 @@ inventoryRoute.post("/", (req, res) => {
     status,
     quantity,
   };
-
+  
   if (!inventoryData) {
     res.status(503).json({ message: "something is wrong with the server" });
   } else if (!warehouseID || !warehouseName || !itemName || !description || !category || !status || !quantity) {
@@ -86,7 +87,7 @@ inventoryRoute.post("/", (req, res) => {
   } else {
     inventoryData.push(newInventory);
     fs.writeFileSync("./data/inventories.json", JSON.stringify(inventoryData));
-    res.status(200).json(inventoryData);
+    res.status(200).json(newInventory);
   }
 });
 
