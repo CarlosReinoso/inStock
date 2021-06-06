@@ -19,10 +19,8 @@ class Header extends Component {
   }
 
   render() {
-
     const { pathname } = this.state;
     console.log(this.state);
-
 
     return (
       <header className="header">

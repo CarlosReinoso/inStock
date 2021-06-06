@@ -1,0 +1,90 @@
+@use '../../partials/resets' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/buttons' as *;
+@use '../../partials/breakpoints' as *;
+
+.warehouse-form {
+  @include main-component;
+
+  &__flex-container {
+    @include tablet {
+      display: flex;
+      width: 100%;
+    }
+  }
+
+  &__link {
+    display: flex;
+    color: $Black;
+    width: 100%;
+  }
+
+  &__header {
+    display: flex;
+    padding: remy(24);
+    border-bottom: remy(1) solid $Cloud;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      font-weight: 600;
+      margin-bottom: remy(24);
+    }
+    &-physical {
+      padding: 0 remy(24);
+      margin-top: remy(24);
+      border-bottom: remy(1) solid $Cloud;
+      @include tablet {
+        width: 50%;
+        border-bottom: none;
+        border-right: remy(1) solid $Cloud;
+      }
+    }
+    &-manager {
+      margin-top: remy(24);
+      padding: 0 remy(24);
+      @include tablet {
+        width: 50%;
+      }
+    }
+  }
+
+  &__input {
+    width: 100%;
+    height: remy(24);
+    border-radius: remy(20);
+    border: remy(1) solid $Cloud;
+    padding: remy(16) remy(16);
+    margin-bottom: remy(16);
+    &-title {
+      color: $Black;
+      margin-bottom: remy(5);
+      font-weight: 600;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    margin: 0 remy(24);
+    justify-content: space-between;
+    @include tablet {
+      align-self: flex-end;
+    }
+    &-cancel {
+      width: 50%;
+      margin-right: remy(16);
+      @extend .button-secondary;
+    }
+    &-add {
+      width: 50%;
+    }
+    @include tablet {
+      flex-basis: 100%;
+      width: 30%;
+      margin-top: remy(24);
+    }
+  }
+}
