@@ -1,6 +1,6 @@
 import WarehouseList from "./components/warehouseList/WarehouseList";
 import "./App.scss";
-import Header from "./components/Header/Header";
+import Header from "./components/header/Header";
 import WarehouseDetails from "./components/warehouseDetails/WarehouseDetails";
 import { Component } from "react";
 
@@ -28,19 +28,17 @@ class App extends Component {
 
   getWarehouseList() {
     axios.get(`${URL}/warehouse`).then((res) => {
-      console.log(res.data);
       this.setState(
         {
           warehouseList: res.data,
         },
-        () => console.log("my state ", this.state)
+        // () => console.log("my state ", this.state)
       );
     });
   }
 
   getInventoryList() {
     axios.get(`${URL}/inventory`).then((res) => {
-      console.log(res.data);
       this.setState(
         {
           inventory: res.data,
