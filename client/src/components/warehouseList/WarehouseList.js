@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import "./warehouseList.scss";
 import React, { Component } from 'react'
 import searchIcon from "../../assets/Icons/search-24px.svg";
@@ -20,7 +19,6 @@ export default class WarehouseList extends Component {
 
   getWarehousesList() {
     axios.get(`${URL}/warehouses`).then((res) => {
-      console.log(res.data);
       this.setState(
         {
           warehouseList: res.data
@@ -90,7 +88,10 @@ export default class WarehouseList extends Component {
               <li className="warehouse-list__table-item--action">ACTIONS</li>
             </ul>
           </div>
-          <WarehouseListItem />
+          {this.state.warehouseList.map((item) => (
+          <WarehouseListItem key={item.id} item={item} />
+        ))}
+         
         </div>
       </section>
     );

@@ -1,6 +1,6 @@
 import WarehouseList from "./components/warehouseList/WarehouseList";
 import "./App.scss";
-import Header from "./components/header/Header";
+import Header from "./components/Header/Header";
 import { Component } from "react";
 
 import InventoryList from "./components/InventoryList/InventoryList";

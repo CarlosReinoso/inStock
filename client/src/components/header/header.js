@@ -11,7 +11,7 @@ class Header extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (
       prevProps.location.pathname !== this.props.location.pathname &&
-      (this.props.location.pathname === "/warehouse" ||
+      (this.props.location.pathname === "/warehouses" ||
         this.props.location.pathname === "/inventory")
     ) {
       this.setState({ pathname: this.props.location.pathname });
