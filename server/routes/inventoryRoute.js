@@ -8,7 +8,7 @@ const readInventoryData = () => {
 };
 
 const writeInventoryData = (myData) => {
-  return JSON.stringify(fs.writeFileSync("./data/inventories.json", myData));
+  return fs.writeFileSync("./data/inventories.json", JSON.stringify(myData));
 };
 
 const getInventoriesList = (_req, res) => {
@@ -51,7 +51,6 @@ inventoryRoute.get("/:itemID", (req, res) => {
   }
 });
 
-
 //add item to inventory
 inventoryRoute.post("/", (req, res) => {
   const inventoryData = readInventoryData();
@@ -76,10 +75,18 @@ inventoryRoute.post("/", (req, res) => {
     status,
     quantity,
   };
-  
+
   if (!inventoryData) {
     res.status(503).json({ message: "something is wrong with the server" });
-  } else if (!warehouseID || !warehouseName || !itemName || !description || !category || !status || !quantity) {
+  } else if (
+    !warehouseID ||
+    !warehouseName ||
+    !itemName ||
+    !description ||
+    !category ||
+    !status ||
+    !quantity
+  ) {
     res.status(400).json({
       message: "incorrect request, information missing",
       body: req.body,
@@ -90,7 +97,6 @@ inventoryRoute.post("/", (req, res) => {
     res.status(200).json(newInventory);
   }
 });
-
 
 //edit an item in inventory
 inventoryRoute.put("/:inventoryId", (req, res) => {
@@ -113,10 +119,10 @@ inventoryRoute.put("/:inventoryId", (req, res) => {
     description: req.body.description,
     category: req.body.category,
     status: req.body.status,
-    quantity: 500
+    quantity: 500,
   };
-  console.log('item after +++', item)
-  
+  console.log("item after +++", item);
+
   const {
     warehouseID,
     warehouseName,
@@ -142,8 +148,26 @@ inventoryRoute.put("/:inventoryId", (req, res) => {
     });
   } else {
     removedItemList.push(item);
-    fs.writeFileSync("./data/inventories.json", JSON.stringify(removedItemList));
+    fs.writeFileSync(
+      "./data/inventories.json",
+      JSON.stringify(removedItemList)
+    );
     res.status(200).json(removedItemList);
+  }
+});
+
+inventoryRoute.delete("/:itemID", (req, res) => {
+  const inventory = readInventoryData();
+  const item = inventory.find((item) => item.id === req.params.itemID);
+
+  if (!item) {
+    res
+      .status(404)
+      .json({ message: "Could not delete the item as it does not exist" });
+  } else {
+    const data = inventory.filter((item) => item.id !== req.params.itemID);
+    writeInventoryData(data);
+    res.status(200).json(data);
   }
 });
 
