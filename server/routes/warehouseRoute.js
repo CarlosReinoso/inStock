@@ -6,6 +6,13 @@ const { v4: uuidv4 } = require("uuid");
 const readWarehouseData = () => {
   return JSON.parse(fs.readFileSync("./data/warehouses.json"));
 };
+const readInventoryData = () => {
+  return JSON.parse(fs.readFileSync("./data/inventories.json"));
+};
+
+const writeWarehouseData = (myData) => {
+  return JSON.stringify(fs.writeFileSync("./data/warehouses.json"), myData);
+};
 
 warehouseRoute.get("/", (_req, res) => {
   const warehouseList = readWarehouseData();
@@ -32,6 +39,8 @@ warehouseRoute.post("/", (req, res) => {
   }
 });
 
+
+
 warehouseRoute.get("/:warehouseName", (req, res) => {
   const warehouse = readWarehouseData();
   const data = warehouse.find((item) => item.name === req.params.warehouseName);
@@ -42,5 +51,24 @@ warehouseRoute.get("/:warehouseName", (req, res) => {
   }
 });
 
+warehouseRoute.delete("/:warehouseId", (req, res) => {
+  const warehouseData = readWarehouseData();
+  const inventoryData = readInventoryData();
+  const warehouseID = req.params.warehouseId;
+  const warehouse = warehouseData.find((item) => item.id === warehouseID);
+  const newInventory = inventoryData.filter(
+    (item) => item.warehouseID !== warehouseID
+  );
+  newWarehouseList = warehouseData.filter((wh) => wh.id !== warehouseID);
+
+  fs.writeFileSync("./data/warehouses.json", JSON.stringify(newWarehouseList));
+  fs.writeFileSync("./data/inventories.json", JSON.stringify(newInventory));
+
+  const sendBack = {
+    warehouse,
+    newInventory,
+  };
+  res.status(200).send(sendBack);
+});
 
 module.exports = warehouseRoute;
