@@ -4,6 +4,7 @@ import searchIcon from "../../assets/Icons/search-24px.svg";
 import sortIcon from "../../assets/Icons/sort-24px.svg";
 import WarehouseListItem from "../warehouseListItem/WarehouseListItem";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const URL = "http://localhost:8080";
 
@@ -17,7 +18,7 @@ export default class WarehouseList extends Component {
     this.getWarehousesList();
   }
 
-  getWarehousesList() {
+  getWarehousesList= () => {
     axios.get(`${URL}/warehouses`).then((res) => {
       this.setState(
         {
@@ -46,9 +47,14 @@ export default class WarehouseList extends Component {
                   className="warehouse-list__search-icon"
                 />
               </div>
+            <Link 
+            
+            to="/warehouses/add"
+            className="warehouse-list__button">
               <button className="warehouse-list__button">
                 + Add New Warehouse
               </button>
+              </Link>  
             </div>
           </div>
           <div className="warehouse-list__table-header">
@@ -89,7 +95,7 @@ export default class WarehouseList extends Component {
             </ul>
           </div>
           {this.state.warehouseList.map((item) => (
-          <WarehouseListItem key={item.id} item={item} />
+          <WarehouseListItem key={item.id} item={item} getList={this.getWarehousesList} />
         ))}
          
         </div>
