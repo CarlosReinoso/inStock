@@ -19,7 +19,6 @@ import WarehouseListItem from "./components/warehouseListItem/WarehouseListItem"
 
 import WarehouseForm from "./components/WarehouseForm/WarehouseForm";
 
-
 const URL = "http://localhost:8080";
 
 class App extends Component {
@@ -49,10 +48,14 @@ class App extends Component {
           path="/inventory/add"
           render={(renderProps) => <DetailedItem {...renderProps} />}
         />
+
         <Route
           path="/inventory/:itemId"
           render={() => <AddInventoryItem />}
         />
+
+        <footer>© InStock Inc. All Rights Reserved.</footer>
+
       </div>
     );
   }
