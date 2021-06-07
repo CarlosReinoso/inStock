@@ -23,19 +23,17 @@ import WarehouseForm from "./components/WarehouseForm/WarehouseForm";
 const URL = "http://localhost:8080";
 
 class App extends Component {
-
   render() {
     return (
       <div className="App">
         <Route path="/" render={(renderProps) => <Header {...renderProps} />} />
         <Route
-
           exact
-          path="/warehouse/:warehouseName"
+          path="/warehouses/:warehouseName"
           component={WarehouseInventory}
         />
-        <Route path="/warehouse/edit/form" component={WarehouseForm} />
-        <Route exact path="/warehouse" component={WarehouseList} />
+        <Route path="/warehouses/edit/form" component={WarehouseForm} />
+        <Route exact path="/warehouses" component={WarehouseList} />
         <Route exact path="/inventory" render={() => <InventoryList />} />
 
         <Route
