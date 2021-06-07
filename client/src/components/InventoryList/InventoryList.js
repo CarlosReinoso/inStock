@@ -7,11 +7,14 @@ import inventory from "../../inventories.json";
 import icon from "../../assets/Icons/sort-24px.svg";
 import axios from "axios";
 import ColumnsLabels from "../ColumnsLabels/ColumnsLabels";
+import DeleteInventory from "../DeleteInventory/DeleteInventory";
 class InventoryList extends Component {
   state = {
     search: "",
     list: [],
     filteredList: [],
+    visibility: false,
+    deleteItem: [],
   };
 
   getInventoryList = () => {
@@ -38,19 +41,39 @@ class InventoryList extends Component {
     });
   };
 
+  deleteHandler = (item) => {
+    console.log("my item", this.state.visibility);
+    this.setState({ ...this.state, deleteItem: item, visibility: true });
+  };
+
+  stateReset = () => {
+    this.setState({ ...this.state, visibility: false });
+  };
+
   render() {
     return (
-      <section className="inventory-list">
-        <SearchBar
-          title="Inventory"
-          searchHandler={this.searchHandler}
-          place="item"
+      <>
+        <DeleteInventory
+          stateReset={this.stateReset}
+          deleteItem={this.state.deleteItem}
+          visibility={this.state.visibility}
         />
-        <ColumnsLabels />
-        {this.state.filteredList.map((item) => (
-          <InventoryItem key={item.id} item={item} />
-        ))}
-      </section>
+        <section className="inventory-list">
+          <SearchBar
+            title="Inventory"
+            searchHandler={this.searchHandler}
+            place="item"
+          />
+          <ColumnsLabels />
+          {this.state.filteredList.map((item) => (
+            <InventoryItem
+              deleteHandler={this.deleteHandler}
+              key={item.id}
+              item={item}
+            />
+          ))}
+        </section>
+      </>
     );
   }
 }
