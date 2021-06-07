@@ -11,7 +11,7 @@ const readInventoryData = () => {
 };
 
 const writeWarehouseData = (myData) => {
-  return JSON.stringify(fs.writeFileSync("./data/warehouses.json"), myData);
+  return fs.writeFileSync("./data/warehouses.json", JSON.stringify(myData));
 };
 
 warehouseRoute.get("/", (_req, res) => {
@@ -38,8 +38,6 @@ warehouseRoute.post("/", (req, res) => {
     res.status(200).json(warehouseList);
   }
 });
-
-
 
 warehouseRoute.get("/:warehouseName", (req, res) => {
   const warehouse = readWarehouseData();
@@ -69,6 +67,35 @@ warehouseRoute.delete("/:warehouseId", (req, res) => {
     newInventory,
   };
   res.status(200).send(sendBack);
+});
+
+warehouseRoute.put("/:warehouseID", (req, res) => {
+  let warehouses = readWarehouseData();
+  let warehouse = warehouses.find((item) => item.id === req.params.warehouseID);
+
+  warehouses = warehouses.filter((item) => item.id !== req.params.warehouseID);
+
+  if (!warehouse) {
+    res.status(404).json({ message: "Warehouse does not exist" });
+  } else if (Object.keys(req.body).length) {
+    const bodyReq = req.body;
+    let contact = warehouse.contact;
+
+    const contactReq = bodyReq.contact;
+    contact = { ...contact, ...contactReq };
+    warehouse = { ...warehouse, ...bodyReq };
+    warehouse = { ...warehouse, contact };
+
+    console.log(warehouse);
+    warehouses = [...warehouses, warehouse];
+    writeWarehouseData(warehouses);
+
+    res.status(200).json({ warehouses });
+  } else {
+    res
+      .status(400)
+      .json({ message: "No data provided to change on the warehouse" });
+  }
 });
 
 module.exports = warehouseRoute;
