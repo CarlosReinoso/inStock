@@ -11,3 +11,11 @@ label {
   background-color: $Light-Grey;
   height: 100%;
 }
+
+
+footer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: remy(40);
+  color: $Slate;
+}
