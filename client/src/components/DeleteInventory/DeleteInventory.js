@@ -29,8 +29,10 @@ export default class DeleteInventory extends Component {
           <span className="delete-inventory__close">
             <img onClick={this.cancelHandler} src={close} alt="" />
           </span>
-          <h1>Delete {`${this.props.deleteItem.itemName}`} inventory item?</h1>
-          <p className="p1">
+          <h1 className="delete-inventory__text">
+            Delete {`${this.props.deleteItem.itemName}`} inventory item?
+          </h1>
+          <p className="delete-inventory__p1">
             Please confirm that you’d like to delete the King West from the list
             of warehouses. You won’t be able to undo this action.
           </p>

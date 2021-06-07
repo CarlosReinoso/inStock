@@ -1,3 +1,8 @@
+@use '../../partials/resets' as *;
+@use '../../partials/variables' as *;
+@use '../../partials/buttons' as *;
+@use '../../partials/breakpoints' as *;
+
 .delete-inventory {
   display: none;
   position: fixed;
@@ -11,20 +16,40 @@
     display: flex;
   }
   &__toast {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+
     background-color: white;
     position: absolute;
-    top: 20%;
-    left: 30%;
-    width: 40%;
-    padding: 20px;
-    border-radius: 5px;
 
     display: flex;
     flex-direction: column;
-    z-index: 1;
+
+    @include tablet {
+      top: 20%;
+      left: 30%;
+      width: 40%;
+      height: auto;
+      padding: 20px;
+      border-radius: 5px;
+    }
   }
-  &__close:hover {
-    cursor: pointer;
+  &__close {
+    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__text {
+    margin-top: remy(24);
+  }
+  &__p1 {
+    margin-bottom: remy(24);
   }
   &__pop-buttons {
   }
