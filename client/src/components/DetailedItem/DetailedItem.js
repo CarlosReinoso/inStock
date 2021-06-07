@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import EditButton from "../EditButton/EditButton";
 import backIcon from "../../assets/Icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
+import deleteItem from "../DeleteInventory/DeleteInventory";
+
 class DetailedItem extends Component {
   state = {
     item: {},
