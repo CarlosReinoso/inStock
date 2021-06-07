@@ -3,32 +3,50 @@ import React, { Component } from "react";
 import arrowBack from "../../assets/Icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
 import queryString from "query-string";
+import axios from "axios";
 class WarehouseForm extends Component {
   state = {
-    id: "",
-    name: "",
-    address: "",
-    city: "",
-    country: "",
-    contact: {
+    warehouse: {
+      id: "",
       name: "",
-      position: "",
-      phone: "",
-      email: "",
+      address: "",
+      city: "",
+      country: "",
+      contact: {
+        name: "",
+        position: "",
+        phone: "",
+        email: "",
+      },
     },
+  };
+
+  saveHandler = (e) => {
+    e.preventDefault();
+    axios
+      .put(`http://localhost:8080/warehouses/${this.state.warehouse.id}`, {
+        ...this.state.warehouse,
+      })
+      .then((_data) => this.props.history.push("/warehouses"));
   };
 
   changeHandler = (e) => {
     const [target, position] = e.target.name.split(".");
     if (target === "physical") {
-      this.setState({ ...this.state, [position]: e.target.value }, () =>
-        console.log(this.state)
+      this.setState(
+        { warehouse: { ...this.state.warehouse, [position]: e.target.value } },
+        () => console.log(this.state)
       );
     } else if (target === "contact") {
       this.setState(
         {
-          ...this.state,
-          contact: { ...this.state.contact, [position]: e.target.value },
+          warehouse: {
+            ...this.state.warehouse,
+            contact: {
+              ...this.state.warehouse.contact,
+              [position]: e.target.value,
+            },
+          },
         },
         () => console.log(this.state)
       );
@@ -37,9 +55,11 @@ class WarehouseForm extends Component {
 
   componentDidMount() {
     const queryParams = queryString.parse(this.props.location.search);
-    console.log("query param parsed", queryParams);
+    console.log("query param parsed", queryParams.name);
     if (queryParams.name) {
-      console.log("Name is in the query");
+      axios
+        .get("http://localhost:8080/warehouses/" + queryParams.name)
+        .then((data) => this.setState({ warehouse: data.data.data }));
     }
   }
   submitHandler = (e) => {
@@ -55,7 +75,7 @@ class WarehouseForm extends Component {
         <section className="warehouse-form__header">
           <Link
             className="warehouse-form__link"
-            to={`/warehouse${queryParams.name ? "/" + queryParams.name : ""}`}
+            to={`/warehouses${queryParams.name ? "/" + queryParams.name : ""}`}
           >
             <img
               className="warehouse-form__back-logo"
@@ -69,7 +89,7 @@ class WarehouseForm extends Component {
           </Link>
         </section>
 
-        <form onSubmit={this.submitHandler} className="warehouse-form__details">
+        <form onSubmit={this.saveHandler} className="warehouse-form__details">
           <div className="warehouse-form__flex-container ">
             <section className="warehouse-form__details-physical">
               <h2 className="warehouse-form__details-title">
@@ -82,12 +102,13 @@ class WarehouseForm extends Component {
                   name="physical.name"
                   className="warehouse-form__input"
                   placeholder="Warehouse Name"
-                  value={this.state.name}
+                  value={this.state.warehouse.name}
                 />
               </div>
               <div className="warehouse-form__input-container">
                 <h4 className="warehouse-form__input-title">Street Address</h4>
                 <input
+                  value={this.state.warehouse.address}
                   onChange={this.changeHandler}
                   name="physical.address"
                   className="warehouse-form__input"
@@ -98,6 +119,7 @@ class WarehouseForm extends Component {
               <div className="warehouse-form__input-container">
                 <h4 className="warehouse-form__input-title">City</h4>
                 <input
+                  value={this.state.warehouse.city}
                   onChange={this.changeHandler}
                   name="physical.city"
                   className="warehouse-form__input"
@@ -107,6 +129,7 @@ class WarehouseForm extends Component {
               <div className="warehouse-form__input-container --border">
                 <h4 className="warehouse-form__input-title">Country</h4>
                 <input
+                  value={this.state.warehouse.country}
                   onChange={this.changeHandler}
                   name="physical.country"
                   className="warehouse-form__input"
@@ -123,7 +146,7 @@ class WarehouseForm extends Component {
                   name="contact.name"
                   className="warehouse-form__input"
                   placeholder="Warehouse Name"
-                  value={this.state.contact.name}
+                  value={this.state.warehouse.contact.name}
                 />
               </div>
               <div className="warehouse-form__input-container">
@@ -133,7 +156,7 @@ class WarehouseForm extends Component {
                   name="contact.position"
                   className="warehouse-form__input"
                   placeholder="Position"
-                  value={this.state.contact.position}
+                  value={this.state.warehouse.contact.position}
                 />
               </div>
 
@@ -144,7 +167,7 @@ class WarehouseForm extends Component {
                   name="contact.phone"
                   className="warehouse-form__input"
                   placeholder="Phone"
-                  value={this.state.contact.phone}
+                  value={this.state.warehouse.contact.phone}
                 />
               </div>
               <div className="warehouse-form__input-container --border">
@@ -154,7 +177,7 @@ class WarehouseForm extends Component {
                   name="contact.email"
                   className="warehouse-form__input"
                   placeholder="country"
-                  value={this.state.contact.email}
+                  value={this.state.warehouse.contact.email}
                 />
               </div>
             </section>

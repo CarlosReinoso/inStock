@@ -1,9 +1,9 @@
 import "./edit-button.scss";
 import React from "react";
 
-const EditButton = () => {
+const EditButton = ({ clickHandler }) => {
   return (
-    <div className="edit-button__edit-container">
+    <div onClick={clickHandler} className="edit-button__edit-container">
       <svg
         className="edit-button__edit-logo"
         width="24"

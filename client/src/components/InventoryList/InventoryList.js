@@ -67,7 +67,7 @@ class InventoryList extends Component {
           <ColumnsLabels />
           {this.state.filteredList.map((item) => (
             <InventoryItem
-              deleteHandler={this.deleteHandler}
+              deleting={this.deleteHandler}
               key={item.id}
               item={item}
             />

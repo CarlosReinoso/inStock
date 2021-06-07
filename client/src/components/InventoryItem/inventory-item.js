@@ -7,9 +7,9 @@ import binIcon from "../../assets/Icons/delete_outline-24px.svg";
 import editIcon from "../../assets/Icons/edit-24px.svg";
 import chevronRight from "../../assets/Icons/chevron_right-24px.svg";
 
-const InventoryItem = ({ deleteHandler, item }) => {
+const InventoryItem = ({ deleting, item }) => {
   const deleteItem = (e) => {
-    deleteHandler(item);
+    deleting(item);
   };
   const onHover = (e) => {
     e.target.style.cursor = "pointer";

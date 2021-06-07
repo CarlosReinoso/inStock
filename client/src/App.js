@@ -1,6 +1,6 @@
 import WarehouseList from "./components/warehouseList/WarehouseList";
 import "./App.scss";
-import Header from "./components/Header/Header";
+import Header from "./components/Header/header";
 
 import WarehouseDetails from "./components/warehouseDetails/WarehouseDetails";
 
@@ -31,15 +31,11 @@ class App extends Component {
           path="/warehouses/:warehouseName"
           component={WarehouseInventory}
         />
-        <Route
-          exact
-          path="/warehouses/:warehouseName/edit"
-          component={WarehouseForm}
-        />
-        <Route path="/warehouses/edit/form" component={WarehouseForm} />
+        <Route exact path="/warehouse/edit" component={WarehouseForm} />
+
         <Route exact path="/warehouses" component={WarehouseList} />
         <Route exact path="/warehouses/add" component={WarehouseForm} />
-        
+
         <Route exact path="/inventory" render={() => <InventoryList />} />
 
         <Route
