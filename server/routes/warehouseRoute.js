@@ -19,6 +19,16 @@ warehouseRoute.get("/", (_req, res) => {
   res.status(200).json(warehouseList);
 });
 
+warehouseRoute.get("/:warehouseName", (req, res) => {
+  const warehouse = readWarehouseData();
+  const data = warehouse.find((item) => item.name === req.params.warehouseName);
+  if (!data) {
+    res.status(404).json({ message: "Item not found" });
+  } else {
+    res.status(200).send({ data });
+  }
+});
+
 warehouseRoute.post("/", (req, res) => {
   const { name, address, city, country, contact } = req.body;
 
@@ -37,36 +47,6 @@ warehouseRoute.post("/", (req, res) => {
     fs.writeFileSync("./data/warehouses.json", JSON.stringify(warehouseList));
     res.status(200).json(warehouseList);
   }
-});
-
-warehouseRoute.get("/:warehouseName", (req, res) => {
-  const warehouse = readWarehouseData();
-  const data = warehouse.find((item) => item.name === req.params.warehouseName);
-  if (!data) {
-    res.status(404).json({ message: "Item not found" });
-  } else {
-    res.status(200).send({ data });
-  }
-});
-
-warehouseRoute.delete("/:warehouseId", (req, res) => {
-  const warehouseData = readWarehouseData();
-  const inventoryData = readInventoryData();
-  const warehouseID = req.params.warehouseId;
-  const warehouse = warehouseData.find((item) => item.id === warehouseID);
-  const newInventory = inventoryData.filter(
-    (item) => item.warehouseID !== warehouseID
-  );
-  newWarehouseList = warehouseData.filter((wh) => wh.id !== warehouseID);
-
-  fs.writeFileSync("./data/warehouses.json", JSON.stringify(newWarehouseList));
-  fs.writeFileSync("./data/inventories.json", JSON.stringify(newInventory));
-
-  const sendBack = {
-    warehouse,
-    newInventory,
-  };
-  res.status(200).send(sendBack);
 });
 
 warehouseRoute.put("/:warehouseID", (req, res) => {
@@ -96,5 +76,27 @@ warehouseRoute.put("/:warehouseID", (req, res) => {
       .json({ message: "No data provided to change on the warehouse" });
   }
 });
+
+warehouseRoute.delete("/:warehouseId", (req, res) => {
+  const warehouseData = readWarehouseData();
+  const inventoryData = readInventoryData();
+  const warehouseID = req.params.warehouseId;
+  const warehouse = warehouseData.find((item) => item.id === warehouseID);
+  const newInventory = inventoryData.filter(
+    (item) => item.warehouseID !== warehouseID
+  );
+  newWarehouseList = warehouseData.filter((wh) => wh.id !== warehouseID);
+
+  fs.writeFileSync("./data/warehouses.json", JSON.stringify(newWarehouseList));
+  fs.writeFileSync("./data/inventories.json", JSON.stringify(newInventory));
+
+  const sendBack = {
+    warehouse,
+    newInventory,
+  };
+  res.status(200).send(sendBack);
+});
+
+
 
 module.exports = warehouseRoute;

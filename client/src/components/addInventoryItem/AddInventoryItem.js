@@ -86,7 +86,7 @@ export default class AddInventoryItem extends Component {
         this.setState({
           redirect: true,
         });
-      }, 3000);
+      }, 2250);
       this.setState({
         popup: true,
       });

@@ -50,7 +50,7 @@ class InventoryList extends Component {
     axios
       .delete(`http://localhost:8080/inventory/${itemID}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({
           ...this.state,
           list: res.data,
