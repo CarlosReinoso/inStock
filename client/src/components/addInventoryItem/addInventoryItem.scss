@@ -48,6 +48,12 @@
   &__card--back-icon {
   }
   &__form {
+    flex-direction: column;
+    @include tablet {
+      display: flex;
+    }
+  }
+  &__form-top {
     @include tablet {
       display: flex;
     }
@@ -69,13 +75,12 @@
   &__form-left {
     padding: remy(32) remy(24) remy(0) remy(24);
     @include tablet {
-        width: 49%;
+      width: 49%;
     }
     @include desktop {
-        padding: remy(32) remy(40) remy(0) remy(40);
-      }
+      padding: remy(32) remy(40) remy(0) remy(40);
+    }
     &--item {
-      
     }
     &--descrption {
       height: remy(120);
@@ -99,6 +104,12 @@
     height: 1px;
     z-index: 2;
     margin-top: remy(8);
+
+    &--middle {
+      @include tablet {
+        display: none;
+      }
+    }
   }
   &__vr {
     @include tablet {
@@ -112,11 +123,11 @@
   &__form-right {
     padding: remy(32) remy(24) remy(0) remy(24);
     @include tablet {
-        width: 49%;
+      width: 49%;
     }
     @include desktop {
-        padding: remy(32) remy(40) remy(0) remy(40);
-      }
+      padding: remy(32) remy(40) remy(0) remy(40);
+    }
     &--status-input {
       margin-right: remy(8);
       margin-bottom: 0;
@@ -135,22 +146,35 @@
   &__form-button-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: remy(68);
     gap: remy(17);
     background-color: rgba(247, 248, 249, 0.7);
+    padding: remy(0) remy(24) remy(0) remy(24);
+
     @include tablet {
-        justify-content: flex-end;
-        gap: remy(16);
+      justify-content: flex-end;
+      gap: remy(16);
       padding: remy(0) remy(32) remy(0) remy(32);
     }
     @include desktop {
       padding: remy(0) remy(40) remy(0) remy(40);
     }
   }
-  button {
+  a {
     width: 50%;
     @include tablet {
-        width: remy(72);
+      width: remy(72);
+    }
+  }
+
+  &__form-button {
+    width: 50%;
+    @include tablet {
+      width: remy(72);
+    }
+    &--left {
+      width: 100%;
     }
   }
 }
@@ -162,7 +186,6 @@
 input[type="radio"] {
   width: remy(16);
 }
-
 
 .input-form {
   height: remy(38);

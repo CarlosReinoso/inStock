@@ -100,3 +100,11 @@ select {
     margin-bottom: remy(32);
   }
 }
+
+
+textarea {
+  resize: none;
+  font-family: "Titillium Web", sans-serif;
+  padding: remy(8) remy(16);
+}
+

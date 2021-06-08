@@ -81,13 +81,23 @@ export default class AddInventoryItem extends Component {
     });
   };
 
-  addItem = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-
     const warehouse = this.state.warehouseList.find(
       (i) => i.name === this.state.item.warehouseName
     );
-    console.log("warehouse", warehouse);
+    if (
+      warehouse.id === "" ||
+      this.state.warehouseSelected === "" ||
+      e.target.itemName.value === "" ||
+      e.target.description.value === "" ||
+      this.state.categorySelected === "" ||
+      e.target.status.value === "" ||
+      e.target.quantity.value === ""
+    ) {
+      alert("Please fill in all fields");
+    } else {
+      console.log("warehouse", warehouse);
 
     axios
       .post(`${URL}/inventory/add`, {
@@ -104,16 +114,18 @@ export default class AddInventoryItem extends Component {
       })
       .catch((err) => console.log(err));
 
-    const timed = setTimeout(() => {
-      this.setState({
-        redirect: true,
-      });
-    }, 3000);
-    this.setState({
-      popup: true,
-    });
 
-    return timed;
+      const timed = setTimeout(() => {
+        this.setState({
+          redirect: true,
+        });
+      }, 2250);
+      this.setState({
+        popup: true,
+      });
+
+      return timed;
+    }
   };
 
   handleTextInput = (e) => {
@@ -145,17 +157,19 @@ export default class AddInventoryItem extends Component {
           <div className="inventory-form__hr" />
 
           <form
-            onSubmit={(e) => this.addItem(e)}
+            onSubmit={(e) => this.handleSubmit(e)}
             className="inventory-form__form"
           >
-            <div className="inventory-form__form-left">
-              <h2 className="inventory-form__form-title">Item Details</h2>
-              <h3> Item Name</h3>
-              <input
-                name="itemName"
-                className="input-form 
+            <div className="inventory-form__form-top">
+              <div className="inventory-form__form-left">
+                <h2 className="inventory-form__form-title">Item Details</h2>
+                <h3> Item Name</h3>
+                <input
+                  name="itemName"
+                  className="input-form 
               inventory-form__form-left--item 
               "
+
                 onChange={this.handleTextInput}
                 value={this.state.item.itemName}
               />
@@ -221,8 +235,26 @@ export default class AddInventoryItem extends Component {
                   >
                     Out of Stock
                   </label>
+
                 </div>
+                <h3>Quantity</h3>
+                <input
+                  className="input-form inventory-form__form-right--quantity"
+                  type="number"
+                  name="quantity"
+                />
+                <h3>Warehouse</h3>
+                <select
+                  value={this.state.warehouseSelected}
+                  onChange={this.handleChange}
+                  className="inventory-form__form-select"
+                >
+                  {this.state.warehouseList.map((item) => (
+                    <option value={item.name}>{item.name}</option>
+                  ))}
+                </select>
               </div>
+
               <h3>Quantity</h3>
               <input
                 onChange={this.quantityHandler}
@@ -247,12 +279,18 @@ export default class AddInventoryItem extends Component {
                   <option value={item.name}>{item.name}</option>
                 ))}
               </select>
+
             </div>
+
             <div className="inventory-form__form-button-container">
               <Link to="/inventory">
-                <button className="button-secondary">Cancel</button>
+                <button className="inventory-form__form-button--left button-secondary">
+                  Cancel
+                </button>
               </Link>
-              <button type="submit">Save</button>
+              <button className="inventory-form__form-button " type="submit">
+                Save
+              </button>
             </div>
           </form>
         </div>
