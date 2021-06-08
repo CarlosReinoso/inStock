@@ -1,25 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import binIcon from "../../assets/Icons/delete_outline-24px.svg";
 import penIcon from "../../assets/Icons/edit-24px.svg";
 import chevronRight from "../../assets/Icons/chevron_right-24px.svg";
 import DeleteModal from "../deleteModal/DeleteModal";
 
-
 export default class WarehouseListItem extends Component {
   state = {
     open: false,
   };
 
-  toggleModal =  ()  => {
-    
-    this.setState({
-      open: !this.state.open
-    }, console.log("click", this.state.open))
-  }
+  toggleModal = () => {
+    this.setState(
+      {
+        open: !this.state.open,
+      },
+      console.log("click", this.state.open)
+    );
+  };
 
   render() {
-    const {item} = this.props
+    const { item } = this.props;
     return (
       <div className="warehouse-lis__card-body">
         <hr className="warehouse-list__hr" />
@@ -28,7 +29,7 @@ export default class WarehouseListItem extends Component {
             <div className="warehouse-list__item-left">
               <h4 className="warehouse-list__label">WAREHOUSE</h4>
               <Link
-              to={`/warehouses/${item.name}`}
+                to={`/warehouses/${item.name}`}
                 className="p2 warehouse-list__item-left--name text-link "
               >
                 {item.name}
@@ -56,24 +57,32 @@ export default class WarehouseListItem extends Component {
             </div>
             <div className="warehouse-list__item-bottom--tablet">
               <div className="warehouse-list__item-bottom--bin">
-                <img 
-                onClick={this.toggleModal}
-                src={binIcon} alt="" />
-                {this.state.open ? <DeleteModal toggle={this.toggleModal} item={item} getList={this.props.getList} /> : null}
+                <img onClick={this.toggleModal} src={binIcon} alt="" />
+                {this.state.open ? (
+                  <DeleteModal
+                    toggle={this.toggleModal}
+                    item={item}
+                    getList={this.props.getList}
+                  />
+                ) : null}
               </div>
               <div className="warehouse-list__item-bottom--pen">
-                <Link to={`/warehouses/${item.name}/edit`}>
-                <img src={penIcon} alt="" />
+                <Link to={`/warehouse/edit?name=${item.name}`}>
+                  <img src={penIcon} alt="" />
                 </Link>
               </div>
             </div>
           </div>
           <div className="warehouse-list__item-bottom">
             <div className="warehouse-list__item-bottom--bin">
-            <img 
-                onClick={this.toggleModal}
-                src={binIcon} alt="" />
-                {this.state.open ? <DeleteModal toggle={this.toggleModal} item={item} getList={this.props.getList}/> : null}
+              <img onClick={this.toggleModal} src={binIcon} alt="" />
+              {this.state.open ? (
+                <DeleteModal
+                  toggle={this.toggleModal}
+                  item={item}
+                  getList={this.props.getList}
+                />
+              ) : null}
             </div>
             <div className="warehouse-list__item-bottom--pen">
               <img src={penIcon} alt="" />
@@ -81,8 +90,6 @@ export default class WarehouseListItem extends Component {
           </div>
         </div>
       </div>
-  );
+    );
   }
 }
-
-

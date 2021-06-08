@@ -7,6 +7,7 @@ import InventoryItem from "../InventoryItem/inventory-item";
 import inventory from "../../inventories.json";
 import ColumnsLabels from "../ColumnsLabels/ColumnsLabels";
 import EditButton from "../EditButton/EditButton";
+import { Link } from "react-router-dom";
 const warehouseInfo = {
   id: "2922c286-16cd-4d43-ab98-c79f698aeab0",
   name: "Manhattan",
@@ -21,6 +22,12 @@ const warehouseInfo = {
   },
 };
 class WarehouseInventory extends Component {
+  onClick = (e) => {
+    this.props.history.push(
+      `/warehouse/edit?name=${this.props.match.params.warehouseName}`
+    );
+  };
+
   render() {
     const { warehouseName } = this.props.match.params;
     console.log(this.props);
@@ -30,14 +37,17 @@ class WarehouseInventory extends Component {
     return (
       <div className="warehouse-inventory">
         <section className="warehouse-inventory__header">
-          <img
-            className="warehouse-inventory__back-logo"
-            src={arrowBack}
-            alt="arrow to back to inventory"
-          />
+          <Link className="warehouse-inventory__link" to="/warehouses">
+            <img
+              className="warehouse-inventory__back-logo"
+              src={arrowBack}
+              alt="arrow to back to inventory"
+            />
 
-          <h1 className="warehouse-inventory__title">{warehouseName}</h1>
-          <EditButton />
+            <h1 className="warehouse-inventory__title">{warehouseName}</h1>
+          </Link>
+
+          <EditButton clickHandler={this.onClick} />
         </section>
 
         <address className="warehouse-inventory__address">

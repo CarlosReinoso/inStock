@@ -16,6 +16,10 @@
   @include desktop {
     margin: 0 remy(130);
   }
+  &__link {
+    display: flex;
+    color: $Black;
+  }
 
   &__header {
     margin-left: remy(28);

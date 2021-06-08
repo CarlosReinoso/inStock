@@ -1,6 +1,6 @@
 import WarehouseList from "./components/warehouseList/WarehouseList";
 import "./App.scss";
-import Header from "./components/Header/Header";
+import Header from "./components/Header/header";
 
 import WarehouseDetails from "./components/warehouseDetails/WarehouseDetails";
 
@@ -22,8 +22,6 @@ import WarehouseForm from "./components/WarehouseForm/WarehouseForm";
 const URL = "http://localhost:8080";
 
 class App extends Component {
-  
-
   render() {
     return (
       <div className="App">
@@ -33,6 +31,7 @@ class App extends Component {
           path="/warehouses/:warehouseName"
           component={WarehouseInventory}
         />
+
         <Route exact path="/warehouse/add" component={WarehouseForm} />
         <Route
           exact
@@ -41,21 +40,15 @@ class App extends Component {
         />
         <Route path="/warehouses/edit/form" component={WarehouseForm} />
         <Route exact path="/warehouses" component={WarehouseList} />
-        
+
         <Route exact path="/inventory" render={() => <InventoryList />} />
         <Route exact path="/inventory/add" component={AddInventoryItem} />
         <Route
-          path="/inventory/add"
+          path="/inventory/:itemId"
           render={(renderProps) => <DetailedItem {...renderProps} />}
         />
 
-        <Route
-          path="/inventory/:itemId"
-          render={() => <AddInventoryItem />}
-        />
-
         <footer>© InStock Inc. All Rights Reserved.</footer>
-
       </div>
     );
   }
