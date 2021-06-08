@@ -44,11 +44,9 @@ class App extends Component {
         <Route exact path="/inventory" render={() => <InventoryList />} />
         <Route exact path="/inventory/add" component={AddInventoryItem} />
         <Route
-          path="/inventory/add"
+          path="/inventory/:itemId"
           render={(renderProps) => <DetailedItem {...renderProps} />}
         />
-
-        <Route path="/inventory/:itemId" render={() => <AddInventoryItem />} />
 
         <footer>© InStock Inc. All Rights Reserved.</footer>
       </div>
