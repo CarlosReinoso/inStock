@@ -4,7 +4,6 @@ import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import SuccessPopup from "../successPopup/SuccessPopup";
-import queryString from "query-string";
 
 const URL = "http://localhost:8080";
 
@@ -16,28 +15,11 @@ export default class AddInventoryItem extends Component {
     warehouseSelected: null,
     redirect: false,
     popup: false,
-    item: {
-      id: "",
-      warehouseID: "",
-      warehouseName: "",
-      itemName: "",
-      description: "",
-      category: "",
-      status: "",
-      quantity: 0,
-    },
   };
 
   componentDidMount() {
     this.getWarehousesList();
     this.getInventoryList();
-    const queryParams = queryString.parse(this.props.location.search);
-    if (queryParams.itemID) {
-      axios
-        .get(`${URL}/inventory/${queryParams.itemID}`)
-        .then((res) => this.setState({ ...this.state, item: res.data.data }))
-        .catch((err) => console.log(err));
-    }
   }
 
   getWarehousesList = () => {
@@ -62,28 +44,12 @@ export default class AddInventoryItem extends Component {
 
   handleChange = (e) => {
     this.setState({
-      ...this.state,
-      item: { ...this.state.item, status: e.target.value },
+      warehouseSelected: e.target.value,
     });
   };
 
-  handleRadioSelector = (e) => {
-    this.setState({
-      ...this.state,
-      item: { ...this.state.item, status: e.target.value },
-    });
-  };
-
-  quantityHandler = (e) => {
-    this.setState({
-      ...this.state,
-      item: { ...this.state.item, quantity: e.target.value },
-    });
-  };
-
-  addItem = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-
     const warehouse = this.state.warehouseList.find(
       (i) => i.name === this.state.warehouseSelected
     );
@@ -99,13 +65,15 @@ export default class AddInventoryItem extends Component {
     ) {
       alert("Please fill in all fields");
     } else {
+      console.log("warehouse", warehouse);
+
       axios
-        .post(`${URL}/item/add`, {
+        .post(`${URL}/inventory/add`, {
           warehouseID: warehouse.id,
-          warehouseName: this.state.item.warehouseName,
+          warehouseName: this.state.warehouseSelected,
           itemName: e.target.itemName.value,
           description: e.target.description.value,
-          category: this.state.item.category,
+          category: this.state.categorySelected,
           status: e.target.status.value,
           quantity: e.target.quantity.value,
         })
@@ -118,7 +86,7 @@ export default class AddInventoryItem extends Component {
         this.setState({
           redirect: true,
         });
-      }, 2250);
+      }, 3000);
       this.setState({
         popup: true,
       });
@@ -127,15 +95,7 @@ export default class AddInventoryItem extends Component {
     }
   };
 
-  handleTextInput = (e) => {
-    this.setState({
-      ...this.state,
-      item: { ...this.state.item, [e.target.name]: e.target.value },
-    });
-  };
-
   render() {
-    const queryParams = queryString.parse(this.props.location.search);
     const { popup } = this.state;
     if (popup) {
       return <SuccessPopup redirect={this.state.redirect} />;
@@ -149,14 +109,12 @@ export default class AddInventoryItem extends Component {
               alt=""
               className="inventory-form__card-header--back-icon"
             />
-            <h1>
-              {queryParams.itemID ? "Edit Inventory Item" : "Add New Item"}
-            </h1>
+            <h1>Edit or Add</h1>
           </div>
           <div className="inventory-form__hr" />
 
           <form
-            onSubmit={(e) => this.addItem(e)}
+            onSubmit={(e) => this.handleSubmit(e)}
             className="inventory-form__form"
           >
             <div className="inventory-form__form-top">
@@ -168,35 +126,24 @@ export default class AddInventoryItem extends Component {
                   className="input-form 
               inventory-form__form-left--item 
               "
-                  onChange={this.handleTextInput}
-                  value={this.state.item.itemName}
                 />
                 <h3>Description</h3>
                 <textarea
                   className="inventory-form__form-left--descrption"
                   name="description"
-                  value={this.state.item.description}
-                  onChange={this.handleTextInput}
                 ></textarea>
                 <h3>Category</h3>
                 <select
-                  name="category"
-                  value={
-                    this.state.item.category
-                      ? this.state.item.category
-                      : this.state.categories[0]
-                  }
-                  onChange={this.handleTextInput}
+                  value={this.state.categories[0]}
+                  onChange={this.handleChange}
                   className="inventory-form__form-select"
                 >
                   {this.state.categories.map((item) => (
-                    <option name="category" value={item}>
-                      {item}
-                    </option>
+                    <option value={item}>{item}</option>
                   ))}
                 </select>
               </div>
-              <div className="inventory-form__hr" />
+              <div className="inventory-form__hr--middle" />
               <div className="inventory-form__vr" />
               <div className="inventory-form__form-right">
                 <h2 className="inventory-form__form-title">
@@ -206,12 +153,10 @@ export default class AddInventoryItem extends Component {
                 <div className="inventory-form__radios-container">
                   <div className="inventory-form__radios-container--half">
                     <input
-                      onChange={this.handleRadioSelector}
                       className="inventory-form__form-right--status-input"
                       type="radio"
                       name="status"
                       value="In Stock"
-                      checked={this.state.item.status === "In Stock"}
                     />
                     <label
                       className="inventory-form__form-right--status"
@@ -222,12 +167,10 @@ export default class AddInventoryItem extends Component {
                   </div>
                   <div className="inventory-form__radios-container--half">
                     <input
-                      onChange={this.handleRadioSelector}
                       className="inventory-form__form-right--status-input"
                       type="radio"
                       name="status"
                       value="Out of Stock"
-                      checked={this.state.item.status === "Out of Stock"}
                     />
                     <label
                       className="inventory-form__form-right--status"
@@ -239,22 +182,14 @@ export default class AddInventoryItem extends Component {
                 </div>
                 <h3>Quantity</h3>
                 <input
-                  onChange={this.quantityHandler}
                   className="input-form inventory-form__form-right--quantity"
                   type="number"
                   name="quantity"
-                  min="0"
-                  value={this.state.item.quantity}
                 />
                 <h3>Warehouse</h3>
                 <select
-                  onChange={this.handleTextInput}
-                  name="warehouseName"
-                  value={
-                    this.state.item.warehouseName
-                      ? this.state.item.warehouseName
-                      : this.state.warehouseSelected
-                  }
+                  value={this.state.warehouseSelected}
+                  onChange={this.handleChange}
                   className="inventory-form__form-select"
                 >
                   {this.state.warehouseList.map((item) => (
@@ -273,6 +208,7 @@ export default class AddInventoryItem extends Component {
               <button className="inventory-form__form-button " type="submit">
                 Save
               </button>
+              
             </div>
           </form>
         </div>
