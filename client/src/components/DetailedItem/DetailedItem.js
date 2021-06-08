@@ -18,7 +18,8 @@ class DetailedItem extends Component {
       .get(`http://localhost:8080/inventory/${this.props.match.params.itemId}`)
       .then((res) => {
         this.setState({ item: res.data.data });
-      });
+      })
+      .catch((err) => console.log("failed to fetch ", err));
   }
 
   render() {

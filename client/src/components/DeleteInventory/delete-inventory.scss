@@ -20,7 +20,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    padding: 20px;
+    padding: remy(20);
 
     background-color: white;
     position: absolute;
@@ -30,11 +30,11 @@
 
     @include tablet {
       top: 20%;
-      left: 30%;
-      width: 40%;
-      height: auto;
-      padding: 20px;
-      border-radius: 5px;
+      left: 25%;
+      width: 50%;
+      height: 50%;
+      padding: remy(24);
+      border-radius: remy(5);
     }
   }
   &__close {
@@ -46,11 +46,10 @@
     }
   }
   &__text {
-    margin-top: remy(24);
+    margin-top: remy(16);
+    margin-bottom: remy(16);
   }
   &__p1 {
     margin-bottom: remy(24);
-  }
-  &__pop-buttons {
   }
 }

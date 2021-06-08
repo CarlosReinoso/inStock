@@ -41,6 +41,7 @@ class App extends Component {
         <Route path="/warehouses/edit/form" component={WarehouseForm} />
         <Route exact path="/warehouses" component={WarehouseList} />
 
+
         <Route exact path="/inventory" render={() => <InventoryList />} />
         <Route exact path="/inventory/add" component={AddInventoryItem} />
         <Route
