@@ -74,7 +74,6 @@ warehouseRoute.put("/:warehouseID", (req, res) => {
   let warehouse = warehouses.find((item) => item.id === req.params.warehouseID);
 
   warehouses = warehouses.filter((item) => item.id !== req.params.warehouseID);
-
   if (!warehouse) {
     res.status(404).json({ message: "Warehouse does not exist" });
   } else if (Object.keys(req.body).length) {
