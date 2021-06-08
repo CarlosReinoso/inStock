@@ -4,18 +4,7 @@
 @use '../../partials/breakpoints' as *;
 
 .inventory-list {
-  border-radius: remy(5);
-  margin: 0 remy(16) 0 remy(16);
-  position: relative;
-  bottom: remy(60);
-  background-color: $White;
-  @include tablet {
-    margin: 0 remy(32);
-  }
-  @include desktop {
-    margin: 0 remy(130);
-  }
-
+  @include main-component;
   &__label-container {
     display: flex;
     justify-content: flex-start;

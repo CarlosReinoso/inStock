@@ -65,11 +65,14 @@
     align-self: center;
     z-index: 1;
     width: 100%;
-    margin-top: remy(-38);
+    margin-top: 0;
     margin-bottom: remy(96);
     background-color: $White;
     box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
-    border-radius: 3px;
+    border-radius: remy(5);
+    @include tablet {
+      margin-top: remy(-38);
+    }
   }
   &__search-container {
     display: inline-flex;
@@ -114,6 +117,9 @@
   }
   &__button {
     width: 100%;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__label {
@@ -206,15 +212,22 @@
     }
     &--bin-button:hover {
       background-color: $White;
+      cursor: pointer;
     }
     &--bin {
       width: 50%;
+      &:hover {
+        cursor: pointer;
+      }
     }
     &--pen {
       display: flex;
       justify-content: flex-end;
       width: 50%;
       margin-bottom: 7px;
+      &:hover {
+        cursor: pointer;
+      }
     }
     &--tablet {
       display: none;
