@@ -4,6 +4,7 @@ import arrowBackIcon from "../../assets/Icons/arrow_back-24px.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import SuccessPopup from "../successPopup/SuccessPopup";
+import queryString from "query-string";
 
 const URL = "http://localhost:8080";
 
@@ -15,11 +16,28 @@ export default class AddInventoryItem extends Component {
     warehouseSelected: null,
     redirect: false,
     popup: false,
+    item: {
+      id: "",
+      warehouseID: "",
+      warehouseName: "",
+      itemName: "",
+      description: "",
+      category: "",
+      status: "",
+      quantity: 0,
+    },
   };
 
   componentDidMount() {
     this.getWarehousesList();
     this.getInventoryList();
+    const queryParams = queryString.parse(this.props.location.search);
+    if (queryParams.itemID) {
+      axios
+        .get(`${URL}/inventory/${queryParams.itemID}`)
+        .then((res) => this.setState({ ...this.state, item: res.data.data }))
+        .catch((err) => console.log(err));
+    }
   }
 
   getWarehousesList = () => {
@@ -44,7 +62,22 @@ export default class AddInventoryItem extends Component {
 
   handleChange = (e) => {
     this.setState({
-      warehouseSelected: e.target.value,
+      ...this.state,
+      item: { ...this.state.item, status: e.target.value },
+    });
+  };
+
+  handleRadioSelector = (e) => {
+    this.setState({
+      ...this.state,
+      item: { ...this.state.item, status: e.target.value },
+    });
+  };
+
+  quantityHandler = (e) => {
+    this.setState({
+      ...this.state,
+      item: { ...this.state.item, quantity: e.target.value },
     });
   };
 
@@ -52,17 +85,17 @@ export default class AddInventoryItem extends Component {
     e.preventDefault();
 
     const warehouse = this.state.warehouseList.find(
-      (i) => i.name === this.state.warehouseSelected
+      (i) => i.name === this.state.item.warehouseName
     );
     console.log("warehouse", warehouse);
 
     axios
       .post(`${URL}/inventory/add`, {
         warehouseID: warehouse.id,
-        warehouseName: this.state.warehouseSelected,
+        warehouseName: this.state.item.warehouseName,
         itemName: e.target.itemName.value,
         description: e.target.description.value,
-        category: this.state.categorySelected,
+        category: this.state.item.category,
         status: e.target.status.value,
         quantity: e.target.quantity.value,
       })
@@ -83,7 +116,15 @@ export default class AddInventoryItem extends Component {
     return timed;
   };
 
+  handleTextInput = (e) => {
+    this.setState({
+      ...this.state,
+      item: { ...this.state.item, [e.target.name]: e.target.value },
+    });
+  };
+
   render() {
+    const queryParams = queryString.parse(this.props.location.search);
     const { popup } = this.state;
     if (popup) {
       return <SuccessPopup redirect={this.state.redirect} />;
@@ -97,7 +138,9 @@ export default class AddInventoryItem extends Component {
               alt=""
               className="inventory-form__card-header--back-icon"
             />
-            <h1>Edit or Add</h1>
+            <h1>
+              {queryParams.itemID ? "Edit Inventory Item" : "Add New Item"}
+            </h1>
           </div>
           <div className="inventory-form__hr" />
 
@@ -113,20 +156,31 @@ export default class AddInventoryItem extends Component {
                 className="input-form 
               inventory-form__form-left--item 
               "
+                onChange={this.handleTextInput}
+                value={this.state.item.itemName}
               />
               <h3>Description</h3>
               <textarea
                 className="inventory-form__form-left--descrption"
                 name="description"
+                value={this.state.item.description}
+                onChange={this.handleTextInput}
               ></textarea>
               <h3>Category</h3>
               <select
-                value={this.state.categories[0]}
-                onChange={this.handleChange}
+                name="category"
+                value={
+                  this.state.item.category
+                    ? this.state.item.category
+                    : this.state.categories[0]
+                }
+                onChange={this.handleTextInput}
                 className="inventory-form__form-select"
               >
                 {this.state.categories.map((item) => (
-                  <option value={item}>{item}</option>
+                  <option name="category" value={item}>
+                    {item}
+                  </option>
                 ))}
               </select>
             </div>
@@ -138,10 +192,12 @@ export default class AddInventoryItem extends Component {
               <div className="inventory-form__radios-container">
                 <div className="inventory-form__radios-container--half">
                   <input
+                    onChange={this.handleRadioSelector}
                     className="inventory-form__form-right--status-input"
                     type="radio"
                     name="status"
                     value="In Stock"
+                    checked={this.state.item.status === "In Stock"}
                   />
                   <label
                     className="inventory-form__form-right--status"
@@ -152,10 +208,12 @@ export default class AddInventoryItem extends Component {
                 </div>
                 <div className="inventory-form__radios-container--half">
                   <input
+                    onChange={this.handleRadioSelector}
                     className="inventory-form__form-right--status-input"
                     type="radio"
                     name="status"
                     value="Out of Stock"
+                    checked={this.state.item.status === "Out of Stock"}
                   />
                   <label
                     className="inventory-form__form-right--status"
@@ -167,14 +225,22 @@ export default class AddInventoryItem extends Component {
               </div>
               <h3>Quantity</h3>
               <input
+                onChange={this.quantityHandler}
                 className="input-form inventory-form__form-right--quantity"
                 type="number"
                 name="quantity"
+                min="0"
+                value={this.state.item.quantity}
               />
               <h3>Warehouse</h3>
               <select
-                value={this.state.warehouseSelected}
-                onChange={this.handleChange}
+                onChange={this.handleTextInput}
+                name="warehouseName"
+                value={
+                  this.state.item.warehouseName
+                    ? this.state.item.warehouseName
+                    : this.state.warehouseSelected
+                }
                 className="inventory-form__form-select"
               >
                 {this.state.warehouseList.map((item) => (

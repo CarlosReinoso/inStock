@@ -22,6 +22,10 @@ class DetailedItem extends Component {
       .catch((err) => console.log("failed to fetch ", err));
   }
 
+  editButton = (e) => {
+    this.props.history.push(`/item/edit?itemID=${this.state.item.id}`);
+  };
+
   render() {
     if (!this.state.item.status) {
       return (
@@ -37,7 +41,7 @@ class DetailedItem extends Component {
               <img src={backIcon} />
               <h1>{this.state.item.itemName}</h1>
             </Link>
-            <EditButton />
+            <EditButton clickHandler={this.editButton} />
           </section>
           <section className="detailed-item__information">
             <div className="detailed-item__top">
