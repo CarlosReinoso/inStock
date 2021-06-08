@@ -58,6 +58,7 @@ export default class AddInventoryItem extends Component {
 
     axios
       .post(`${URL}/inventory/add`, {
+
         warehouseID: warehouse.id,
         warehouseName: this.state.warehouseSelected,
         itemName: e.target.itemName.value,
@@ -65,6 +66,7 @@ export default class AddInventoryItem extends Component {
         category: this.state.categorySelected,
         status: e.target.status.value,
         quantity: e.target.quantity.value,
+     
       })
       .then((res) => {
         console.log("res", res);

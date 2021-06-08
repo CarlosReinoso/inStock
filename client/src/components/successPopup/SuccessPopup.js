@@ -10,7 +10,7 @@ const SuccessPopup = ({ redirect }) => {
     <div className="success-popup">
       <h1>Success ✅</h1>
       <br />
-      <h2>video uploaded</h2>
+      <h2>uploaded</h2>
       <br />
       <h3>redirecting...</h3>
     </div>
