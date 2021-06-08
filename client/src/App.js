@@ -22,8 +22,6 @@ import WarehouseForm from "./components/WarehouseForm/WarehouseForm";
 const URL = "http://localhost:8080";
 
 class App extends Component {
-  
-
   render() {
     return (
       <div className="App">
@@ -48,11 +46,10 @@ class App extends Component {
         <Route exact path="/inventory/add" component={AddInventoryItem} />
         <Route
           path="/inventory/:itemId"
-          render={() => <AddInventoryItem />}
+          render={(renderProps) => <DetailedItem {...renderProps} />}
         />
 
         <footer>© InStock Inc. All Rights Reserved.</footer>
-
       </div>
     );
   }
