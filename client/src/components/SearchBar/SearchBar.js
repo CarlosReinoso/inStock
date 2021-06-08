@@ -24,8 +24,7 @@ class SearchBar extends Component {
           className="search-bar__input"
           placeholder="Search..."
         />
-        <Link to="/inventory/add"
-         className="search-bar__button">
+        <Link to="/item/add" className="search-bar__button">
           <button className="search-bar__button">+ Add New {place}</button>
         </Link>
       </form>

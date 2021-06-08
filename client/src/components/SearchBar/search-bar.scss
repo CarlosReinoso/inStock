@@ -37,8 +37,10 @@
     }
   }
   &__button {
+    width: 100%;
     letter-spacing: unset;
     @include tablet {
+      width: auto;
       margin-left: remy(16);
     }
   }
