@@ -21,11 +21,17 @@ warehouseRoute.get("/", (_req, res) => {
 
 warehouseRoute.get("/:warehouseName", (req, res) => {
   const warehouse = readWarehouseData();
+  const inventoryData = readInventoryData();
   const data = warehouse.find((item) => item.name === req.params.warehouseName);
+
+  const newInventory = inventoryData.filter(
+    (item) => item.warehouseID === data.id
+  );
+
   if (!data) {
     res.status(404).json({ message: "Item not found" });
   } else {
-    res.status(200).send({ data });
+    res.status(200).send({ data, newInventory });
   }
 });
 
@@ -96,7 +102,5 @@ warehouseRoute.delete("/:warehouseId", (req, res) => {
   };
   res.status(200).send(sendBack);
 });
-
-
 
 module.exports = warehouseRoute;

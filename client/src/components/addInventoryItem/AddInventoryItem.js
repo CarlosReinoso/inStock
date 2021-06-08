@@ -99,21 +99,20 @@ export default class AddInventoryItem extends Component {
     } else {
       console.log("warehouse", warehouse);
 
-    axios
-      .post(`${URL}/inventory/add`, {
-        warehouseID: warehouse.id,
-        warehouseName: this.state.item.warehouseName,
-        itemName: e.target.itemName.value,
-        description: e.target.description.value,
-        category: this.state.item.category,
-        status: e.target.status.value,
-        quantity: e.target.quantity.value,
-      })
-      .then((res) => {
-        console.log("res", res);
-      })
-      .catch((err) => console.log(err));
-
+      axios
+        .post(`${URL}/inventory/add`, {
+          warehouseID: warehouse.id,
+          warehouseName: this.state.item.warehouseName,
+          itemName: e.target.itemName.value,
+          description: e.target.description.value,
+          category: this.state.item.category,
+          status: e.target.status.value,
+          quantity: e.target.quantity.value,
+        })
+        .then((res) => {
+          console.log("res", res);
+        })
+        .catch((err) => console.log(err));
 
       const timed = setTimeout(() => {
         this.setState({
@@ -169,34 +168,34 @@ export default class AddInventoryItem extends Component {
                   className="input-form 
               inventory-form__form-left--item 
               "
-
-                onChange={this.handleTextInput}
-                value={this.state.item.itemName}
-              />
-              <h3>Description</h3>
-              <textarea
-                className="inventory-form__form-left--descrption"
-                name="description"
-                value={this.state.item.description}
-                onChange={this.handleTextInput}
-              ></textarea>
-              <h3>Category</h3>
-              <select
-                name="category"
-                value={
-                  this.state.item.category
-                    ? this.state.item.category
-                    : this.state.categories[0]
-                }
-                onChange={this.handleTextInput}
-                className="inventory-form__form-select"
-              >
-                {this.state.categories.map((item) => (
-                  <option name="category" value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
+                  onChange={this.handleTextInput}
+                  value={this.state.item.itemName}
+                />
+                <h3>Description</h3>
+                <textarea
+                  className="inventory-form__form-left--descrption"
+                  name="description"
+                  value={this.state.item.description}
+                  onChange={this.handleTextInput}
+                ></textarea>
+                <h3>Category</h3>
+                <select
+                  name="category"
+                  value={
+                    this.state.item.category
+                      ? this.state.item.category
+                      : this.state.categories[0]
+                  }
+                  onChange={this.handleTextInput}
+                  className="inventory-form__form-select"
+                >
+                  {this.state.categories.map((item) => (
+                    <option name="category" value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
             <div className="inventory-form__hr" />
             <div className="inventory-form__vr" />
@@ -235,7 +234,6 @@ export default class AddInventoryItem extends Component {
                   >
                     Out of Stock
                   </label>
-
                 </div>
                 <h3>Quantity</h3>
                 <input
@@ -279,7 +277,6 @@ export default class AddInventoryItem extends Component {
                   <option value={item.name}>{item.name}</option>
                 ))}
               </select>
-
             </div>
 
             <div className="inventory-form__form-button-container">

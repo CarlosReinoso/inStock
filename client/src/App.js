@@ -9,7 +9,7 @@ import { Component } from "react";
 import InventoryList from "./components/InventoryList/InventoryList";
 import AddInventoryItem from "./components/addInventoryItem/AddInventoryItem";
 
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import WarehouseInventory from "./components/WarehouseInventory/WarehouseInventory";
 import DetailedItem from "./components/DetailedItem/DetailedItem";
 
@@ -25,6 +25,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Redirect path="/" to="/warehouses" />
         <Route path="/" render={(renderProps) => <Header {...renderProps} />} />
         <Route
           exact
@@ -40,7 +41,6 @@ class App extends Component {
         <Route exact path="/item/edit" component={AddInventoryItem} />
 
         <Route exact path="/inventory" render={() => <InventoryList />} />
-
 
         <Route
           path="/inventory/:itemId"
