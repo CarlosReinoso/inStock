@@ -4,28 +4,17 @@
 @use '../../partials/fonts' as *;
 
 .warehouse-inventory {
-  border-radius: remy(5);
-  margin: 0 remy(16) 0 remy(16);
-  position: relative;
-  bottom: remy(60);
-  background-color: $White;
-  padding-top: remy(36);
-  @include tablet {
-    margin: 0 remy(32);
-  }
-  @include desktop {
-    margin: 0 remy(130);
-  }
+  @include main-component;
   &__link {
     display: flex;
     color: $Black;
   }
 
   &__header {
-    margin-left: remy(28);
-    margin-right: remy(24);
+    padding: remy(24) remy(24) remy(34) remy(28);
     display: flex;
     margin-bottom: remy(24);
+    border-bottom: remy(1) solid $Cloud;
   }
   &__title {
     display: flex;

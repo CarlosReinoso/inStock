@@ -19,6 +19,9 @@
     margin-bottom: remy(24);
     margin-left: 0;
     margin-right: auto;
+    @include tablet {
+      margin-bottom: 0;
+    }
   }
 
   &__input {
@@ -28,6 +31,9 @@
     padding: 0 remy(24);
     margin-bottom: remy(16);
     outline: none;
+    @include tablet {
+      margin-bottom: 0;
+    }
   }
   &__button {
     letter-spacing: unset;
