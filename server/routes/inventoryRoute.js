@@ -52,7 +52,7 @@ inventoryRoute.get("/:itemID", (req, res) => {
 });
 
 //add item to inventory
-inventoryRoute.post("/", (req, res) => {
+inventoryRoute.post("/add", (req, res) => {
   const inventoryData = readInventoryData();
 
   const {
@@ -99,7 +99,7 @@ inventoryRoute.post("/", (req, res) => {
 });
 
 //edit an item in inventory
-inventoryRoute.put("/:inventoryId", (req, res) => {
+inventoryRoute.put("edit/:inventoryId", (req, res) => {
   const inventoryData = readInventoryData();
   const inventoryId = req.params.inventoryId;
   // console.log("inventoryId", inventoryId);
@@ -119,7 +119,7 @@ inventoryRoute.put("/:inventoryId", (req, res) => {
     description: req.body.description,
     category: req.body.category,
     status: req.body.status,
-    quantity: 500,
+    quantity: req.body.quantity,
   };
   console.log("item after +++", item);
 

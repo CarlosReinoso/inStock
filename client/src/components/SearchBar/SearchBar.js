@@ -1,6 +1,7 @@
 import "./search-bar.scss";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class SearchBar extends Component {
   state = { search: "" };
@@ -23,7 +24,10 @@ class SearchBar extends Component {
           className="search-bar__input"
           placeholder="Search..."
         />
-        <button className="search-bar__button">+ Add New {place}</button>
+        <Link to="/inventory/add"
+         className="search-bar__button">
+          <button className="search-bar__button">+ Add New {place}</button>
+        </Link>
       </form>
     );
   }

@@ -17,8 +17,14 @@ export default class DeleteInventory extends Component {
     this.props.stateReset();
   };
 
+  deleteOnClick = () => {
+    this.props.listFetching(this.props.deleteItem.id);
+    this.props.stateReset();
+  };
+
   render() {
     console.log(this.props);
+
     return (
       <div
         className={`delete-inventory ${
@@ -40,7 +46,9 @@ export default class DeleteInventory extends Component {
             <button onClick={this.cancelHandler} className="button-secondary">
               Cancel
             </button>
-            <button className="button-delete">Delete</button>
+            <button onClick={this.deleteOnClick} className="button-delete">
+              Delete
+            </button>
           </div>
         </div>
       </div>
