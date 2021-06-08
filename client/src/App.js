@@ -41,6 +41,7 @@ class App extends Component {
 
         <Route exact path="/inventory" render={() => <InventoryList />} />
 
+
         <Route
           path="/inventory/:itemId"
           render={(renderProps) => <DetailedItem {...renderProps} />}
