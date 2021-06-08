@@ -8,6 +8,7 @@ import icon from "../../assets/Icons/sort-24px.svg";
 import axios from "axios";
 import ColumnsLabels from "../ColumnsLabels/ColumnsLabels";
 import DeleteInventory from "../DeleteInventory/DeleteInventory";
+
 class InventoryList extends Component {
   state = {
     search: "",
@@ -30,7 +31,11 @@ class InventoryList extends Component {
     this.getInventoryList();
   }
 
-  componentDidUpdate(prevProps, prevState) {}
+  deleteHandler = (item) => {
+    const deleteItem = this.state.list.find((item) => item.id === item.id);
+
+    this.setState({ ...this.state, visibility: true, deleteItem });
+  };
 
   searchHandler = (query) => {
     this.setState({
@@ -41,9 +46,18 @@ class InventoryList extends Component {
     });
   };
 
-  deleteHandler = (item) => {
-    console.log("my item", this.state.visibility);
-    this.setState({ ...this.state, deleteItem: item, visibility: true });
+  listFetching = (itemID) => {
+    axios
+      .delete(`http://localhost:8080/inventory/${itemID}`)
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          ...this.state,
+          list: res.data,
+          filteredList: res.data,
+        });
+      })
+      .catch((err) => console.log("Failed to delete ", err));
   };
 
   stateReset = () => {
@@ -57,6 +71,7 @@ class InventoryList extends Component {
           stateReset={this.stateReset}
           deleteItem={this.state.deleteItem}
           visibility={this.state.visibility}
+          listFetching={this.listFetching}
         />
         <section className="inventory-list">
           <SearchBar
