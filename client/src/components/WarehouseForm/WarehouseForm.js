@@ -55,7 +55,7 @@ class WarehouseForm extends Component {
 
   componentDidMount() {
     const queryParams = queryString.parse(this.props.location.search);
-    console.log("query param parsed", queryParams.name);
+
     if (queryParams.name) {
       axios
         .get("http://localhost:8080/warehouses/" + queryParams.name)

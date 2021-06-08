@@ -61,7 +61,7 @@ const InventoryItem = ({ deleting, item }) => {
         />
         <Link
           className="inventory-item__link --marginleft"
-          to={`/edit/${item.id}`}
+          to={`/item/edit?itemID=${item.id}`}
         >
           <img src={editIcon} className="inventory-item__icon" />
         </Link>
