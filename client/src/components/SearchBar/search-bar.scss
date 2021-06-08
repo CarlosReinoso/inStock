@@ -13,6 +13,7 @@
 
     flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
   }
 
   &__title {
@@ -38,7 +39,6 @@
   &__button {
     letter-spacing: unset;
     @include tablet {
-      padding: remy(8) remy(16);
       margin-left: remy(16);
     }
   }
