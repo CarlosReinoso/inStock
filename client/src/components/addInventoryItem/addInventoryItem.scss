@@ -173,6 +173,13 @@
     @include tablet {
       width: remy(72);
     }
+  }
+
+  &__form-button {
+    width: 50%;
+    @include tablet {
+      width: remy(72);
+    }
     &--left {
       width: 100%;
     }
