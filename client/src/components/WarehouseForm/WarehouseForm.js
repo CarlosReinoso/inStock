@@ -27,7 +27,8 @@ class WarehouseForm extends Component {
       .put(`http://localhost:8080/warehouses/${this.state.warehouse.id}`, {
         ...this.state.warehouse,
       })
-      .then((_data) => this.props.history.push("/warehouses"));
+      .then((_data) => this.props.history.push("/warehouses"))
+      .catch((err) => console.log(err));
   };
 
   changeHandler = (e) => {
@@ -64,8 +65,10 @@ class WarehouseForm extends Component {
   }
   submitHandler = (e) => {
     e.preventDefault();
-    console.log(this.state);
-    console.log(this.props.location);
+    axios
+      .post("http://localhost:8080/warehouses", this.state.warehouse)
+      .then((res) => this.props.history.push("/warehouses"))
+      .catch((err) => console.log(err));
   };
 
   render() {
@@ -89,7 +92,10 @@ class WarehouseForm extends Component {
           </Link>
         </section>
 
-        <form onSubmit={this.saveHandler} className="warehouse-form__details">
+        <form
+          onSubmit={queryParams.name ? this.saveHandler : this.submitHandler}
+          className="warehouse-form__details"
+        >
           <div className="warehouse-form__flex-container ">
             <section className="warehouse-form__details-physical">
               <h2 className="warehouse-form__details-title">

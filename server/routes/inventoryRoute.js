@@ -11,7 +11,6 @@ const writeInventoryData = (myData) => {
   return fs.writeFileSync("./data/inventories.json", JSON.stringify(myData));
 };
 
-
 inventoryRoute.get("/", (req, res) => {
   const inventory = JSON.parse(fs.readFileSync("./data/inventories.json"));
   if (!req.query.warehouseID) {
@@ -95,7 +94,7 @@ inventoryRoute.post("/add", (req, res) => {
 });
 
 //edit an item in inventory
-inventoryRoute.put("edit/:inventoryId", (req, res) => {
+inventoryRoute.put("/edit/:inventoryId", (req, res) => {
   const inventoryData = readInventoryData();
   const inventoryId = req.params.inventoryId;
   let item = inventoryData.find((i) => i.id === inventoryId);

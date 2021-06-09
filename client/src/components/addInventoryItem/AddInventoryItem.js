@@ -85,22 +85,22 @@ export default class AddInventoryItem extends Component {
     e.preventDefault();
 
     const warehouse = this.state.warehouseList.find(
-      (i) => i.name === this.state.warehouseSelected
+      (i) => i.name === this.state.item.warehouseName
     );
 
     if (
       warehouse.id === "" ||
-      this.state.warehouseSelected === "" ||
+      this.state.warehouseName === "" ||
       e.target.itemName.value === "" ||
       e.target.description.value === "" ||
-      this.state.categorySelected === "" ||
+      this.state.item.category === "" ||
       e.target.status.value === "" ||
       e.target.quantity.value === ""
     ) {
       alert("Please fill in all fields");
     } else {
       axios
-        .post(`${URL}/item/add`, {
+        .post(`${URL}/inventory/add`, {
           warehouseID: warehouse.id,
           warehouseName: this.state.item.warehouseName,
           itemName: e.target.itemName.value,
@@ -127,6 +127,51 @@ export default class AddInventoryItem extends Component {
     }
   };
 
+  editItem = (e) => {
+    e.preventDefault();
+
+    const warehouse = this.state.warehouseList.find(
+      (i) => i.name === this.state.item.warehouseName
+    );
+
+    if (
+      warehouse.id === "" ||
+      this.state.warehouseName === "" ||
+      e.target.itemName.value === "" ||
+      e.target.description.value === "" ||
+      this.state.item.category === "" ||
+      e.target.status.value === "" ||
+      e.target.quantity.value === ""
+    ) {
+      alert("Please fill in all fields");
+    } else {
+      axios
+        .put(`${URL}/inventory/edit/${this.state.item.id}`, {
+          warehouseID: warehouse.id,
+          warehouseName: this.state.item.warehouseName,
+          itemName: e.target.itemName.value,
+          description: e.target.description.value,
+          category: this.state.item.category,
+          status: e.target.status.value,
+          quantity: e.target.quantity.value,
+        })
+        .then((res) => {
+          console.log("res", res);
+        })
+        .catch((err) => console.log(err));
+
+      const timed = setTimeout(() => {
+        this.setState({
+          redirect: true,
+        });
+      }, 2250);
+      this.setState({
+        popup: true,
+      });
+
+      return timed;
+    }
+  };
   handleTextInput = (e) => {
     this.setState({
       ...this.state,
@@ -136,6 +181,7 @@ export default class AddInventoryItem extends Component {
 
   render() {
     const queryParams = queryString.parse(this.props.location.search);
+
     const { popup } = this.state;
     if (popup) {
       return <SuccessPopup redirect={this.state.redirect} />;
@@ -156,7 +202,7 @@ export default class AddInventoryItem extends Component {
           <div className="inventory-form__hr" />
 
           <form
-            onSubmit={(e) => this.addItem(e)}
+            onSubmit={queryParams.itemID ? this.editItem : this.addItem}
             className="inventory-form__form"
           >
             <div className="inventory-form__form-top">

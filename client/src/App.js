@@ -1,6 +1,6 @@
 import WarehouseList from "./components/warehouseList/WarehouseList";
 import "./App.scss";
-import Header from "./components/Header/header";
+import Header from "./components/header/header";
 
 import WarehouseDetails from "./components/warehouseDetails/WarehouseDetails";
 
